@@ -1,5 +1,7 @@
 {
   "name": "as_we",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
 }

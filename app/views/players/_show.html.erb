@@ -1,0 +1,9 @@
+<div>
+  <strong>Number</strong>: <%= player.number %>
+</div>
+
+<div id="conversations">
+  <% player.conversations.each do |conversation| %>
+    <%= link_to (conversation.players.pluck(:number) - [player.number]).join(","), conversation_path(conversation) %><br>
+  <% end %>
+</div>

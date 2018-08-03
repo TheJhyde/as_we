@@ -1,0 +1,17 @@
+<%= @conversation.players.pluck(:number).join(", ") %><br>
+
+<ul id="messages">
+  <% @conversation.messages.each do |msg| %>
+    <%= render partial: "messages/show", locals: {message: msg, current_player: @from} %>
+  <% end %>
+</ul>
+
+<%= form_with url: '#', html: {id: 'new-message'} do |f| %>
+  <%= f.text_area :contents, id: "message-body" %><br>
+  <%= f.submit %>
+<% end %>
+
+<script>
+  const conversation_id = <%= @conversation.id %>;
+  const from_id = <%= @from %>;
+</script>

@@ -1,0 +1,23 @@
+<div>
+  <strong>Code</strong>: <%= @game.code %><br>
+  <strong>State</strong>: <%= @game.state %>
+  <% if @game.state != "end" %>
+    <%= form_for @game do |f| %>
+      <%= f.hidden_field :state, value: @game.state == "before" ? "running" : "end" %>
+      <%= f.submit @game.state == "before" ? "Start Game" : "End Game" %>
+    <% end %>
+  <% end %>
+</div>
+<br/>
+<h1>Host</h1>
+<%= render partial: "players/show", locals: {player: @host} %>
+
+<h1>HRN</h1>
+<!-- We want to filter out the players who aren't part of the current game here  -->
+<div id="conversations">
+  <% @hrn.conversations.each do |conversation| %>
+    <% if conversation.players.pluck(:game_id).include?(@game.id) %>
+      <%= link_to (conversation.players.pluck(:number) - ["HRN"]).join(","), conversation_path(conversation, from: @hrn.id) %><br>
+    <% end %>
+  <% end %>
+</div>

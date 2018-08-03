@@ -4,12 +4,16 @@
     <title>AsWe</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= action_cable_meta_tag %>
+    
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <% flash.each do |k, v| %>
+      <%= content_tag :div, v, class: "flash #{k}" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

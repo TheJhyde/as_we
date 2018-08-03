@@ -1,0 +1,20 @@
+-Should probably upgrade my local npm
+-Upgrade yarn, it's old 
+
+Root Page
+  -What if someone loses their session or cookies somehow? There should be a login method by name
+
+Host Page 
+  -Sending out alerts on a timer
+  -Update player list through websockets
+
+Player Page
+  -Notifications
+  -Design
+  
+Conversation Page
+  -Other conversations sidebar
+  -Notifications also
+  -Adding conversations from links
+    -Conversation creation needs an error for conversations that already exist
+      -Or, just bring them the preexisting conversation

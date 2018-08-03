@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_27_021727) do
+ActiveRecord::Schema.define(version: 2018_08_01_170908) do
+
+  create_table "conversations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "conversations_players", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "conversation_id"
+    t.index ["conversation_id"], name: "index_conversations_players_on_conversation_id"
+    t.index ["player_id"], name: "index_conversations_players_on_player_id"
+  end
 
   create_table "games", force: :cascade do |t|
     t.string "code"
@@ -21,12 +33,11 @@ ActiveRecord::Schema.define(version: 2018_07_27_021727) do
 
   create_table "messages", force: :cascade do |t|
     t.string "contents"
-    t.integer "from_id"
-    t.integer "to_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["from_id"], name: "index_messages_on_from_id"
-    t.index ["to_id"], name: "index_messages_on_to_id"
+    t.integer "from_id"
+    t.integer "conversation_id"
+    t.string "extra", default: "{}"
   end
 
   create_table "players", force: :cascade do |t|
