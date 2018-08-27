@@ -1,21 +1,18 @@
 class PlayersController < ApplicationController
+
   def create
-    @game = Game.find_by(code: params[:player][:code])
-    if @game
-      @player = Player.create(game: @game)
-      session[:current_player] = @player.id
-      session[:current_game] = @game.id
+    @player = Player.new(code: params[:player][:code])
+    if @player.save
+      cookies[:current_player] = @player.id
+      cookies[:current_game] = @player.game.id
       redirect_to @player
-    elsif @game.nil?
-      flash[:alert] = "Game not found."
-      redirect_to root_path
-    elsif @game.state != "begin"
-      flash[:alert] = "Cannot join game in progress."
+    else
+      flash[:alert] = @player.errors.full_messages[0]
       redirect_to root_path
     end
   end
 
   def show
-    @player = Player.find(params[:id])
+    @player = Player.includes(:game, :conversations).find(params[:id])
   end
 end

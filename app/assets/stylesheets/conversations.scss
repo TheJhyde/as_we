@@ -1,3 +1,48 @@
 // Place all the styles related to the Conversations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// @media screen and (max-width: 600px){
+  html, body{
+    height: 100%
+  }
+
+  .conversation-page{
+    height: 100%;
+  }
+
+  #conversation-box{
+    height: 100%;
+  }
+
+  #messages{
+    height: 75%;
+    overflow-y: scroll;
+    padding: 0 5px;
+  }
+
+  .message{
+    margin: 4px;
+    padding: 2px;
+    border-radius: 8px;
+  }
+
+  .from{
+    margin-left: 40px;
+    background-color: red;
+  }
+
+  .to{
+    margin-right: 40px;
+    background-color: #00FFFF;
+  }
+
+  #message-submit{
+    margin-left: 10px;
+    background-color: green;
+  }
+
+  #message-body{
+    width: 90%;
+  }
+// }

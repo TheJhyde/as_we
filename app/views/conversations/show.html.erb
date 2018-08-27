@@ -1,17 +1,27 @@
-<%= @conversation.players.pluck(:number).join(", ") %><br>
+<% content_for :page_classes, "in-game conversation-page" %>
 
-<ul id="messages">
+<div id="player-banner">
+  <%= link_to player_path(@from) do %>
+    <div id="nav"><-</div>
+  <% end %>
+  <div>
+    <%= @conversation.players.pluck(:number).join(", ") %><br>
+  </div>
+</div>
+
+<div id="messages">
   <% @conversation.messages.each do |msg| %>
     <%= render partial: "messages/show", locals: {message: msg, current_player: @from} %>
   <% end %>
-</ul>
+</div>
 
-<%= form_with url: '#', html: {id: 'new-message'} do |f| %>
-  <%= f.text_area :contents, id: "message-body" %><br>
-  <%= f.submit %>
-<% end %>
+<div id="submit-form">
+  <%= form_with url: '#', html: {id: 'new-message'} do |f| %>
+    <%= f.text_area :contents, id: "message-body", rows: 2 %><br>
+    <%= f.submit "SEND", id: "message-submit" %>
+  <% end %>
+</div>
 
 <script>
-  const conversation_id = <%= @conversation.id %>;
-  const from_id = <%= @from %>;
+  gameChannel(<%= @from.id %>, <%= @conversation.id %>)
 </script>

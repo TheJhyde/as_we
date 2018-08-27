@@ -3,12 +3,8 @@
 <%= form_for @game do |f| %>
   <%= f.submit "Create a Game" %>
 <% end %>
-
+<br/>
 <%= form_for @player do |f| %>
   <%= f.label :code, "Game Code" %> <%= f.text_field :code %><br/>
   <%= f.submit "Join a Game" %>
 <% end %>
-
-<div>
-  Join a Game
-</div>

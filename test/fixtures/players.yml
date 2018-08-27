@@ -4,8 +4,27 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+
+hrn:
+  number: HRN
+  host: false
+  left: false
+
+one: 
+  number: 12345
+  host: true
+  left: false
+  game: one
+two:
+  number: 67890
+  host: false
+  left: false
+  game: one
+
+<% 5.times do |i| %>
+player_<%= i %>:
+  number: 1234<%= i %>
+  host: false
+  left: false
+  game: full_game
+<% end %>

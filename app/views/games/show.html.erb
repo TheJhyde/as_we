@@ -1,3 +1,5 @@
+<% content_for :page_classes, "in-game" %>
+
 <div>
   <strong>Code</strong>: <%= @game.code %><br>
   <strong>State</strong>: <%= @game.state %>
@@ -8,16 +10,41 @@
     <% end %>
   <% end %>
 </div>
+
+<div>
+  <h1>Player List</h1>
+  <ul id="player-list">
+    <% @game.players.each do |player| %>
+      <li><%= player.number %><% if player.host? %> (HOST)<% end %></li>
+    <% end %>
+    <% if @game.players.count == 5 %>
+      There are four players online and the game may begin.
+    <% end %>
+  </ul>
+</div>
+
 <br/>
 <h1>Host</h1>
-<%= render partial: "players/show", locals: {player: @host} %>
+<%= @host.number %>
+<%= render partial: "players/conversation_list", locals: {player: @host, conversations: @host.conversations} %>
 
 <h1>HRN</h1>
-<!-- We want to filter out the players who aren't part of the current game here  -->
-<div id="conversations">
-  <% @hrn.conversations.each do |conversation| %>
-    <% if conversation.players.pluck(:game_id).include?(@game.id) %>
-      <%= link_to (conversation.players.pluck(:number) - ["HRN"]).join(","), conversation_path(conversation, from: @hrn.id) %><br>
+<%= render partial: "players/conversation_list", locals: {player: @hrn, conversations: @hrn.conversations.eager_load(:games).where(games: {id: @game.id})} %>
+
+<% if false %>
+<h1>HRN</h1>
+  <!-- We want to filter out the players who aren't part of the current game here  -->
+  <div id="conversations">
+    <% @hrn.conversations.each do |conversation| %>
+      <% if conversation.players.pluck(:game_id).include?(@game.id) %>
+        <%= link_to (conversation.players.pluck(:number) - ["HRN"]).join(","), conversation_path(conversation, from: @hrn.id) %><br>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
+
+<script>
+  gameChannel(<%= @host.id %>, null);
+  gameChannel(<%= @hrn.id %>, null);
+  hostChannel(<%= @game.id %>, null);
+</script>

@@ -1,7 +1,8 @@
 class ConversationsController < ApplicationController
   def show
     @conversation = Conversation.find(params[:id])
-    @from = params[:from] || session[:current_player]
+    @from = Player.find(params[:from] || cookies[:current_player])
+    @conversation.notifications.find_by(player: @from).update(seen: true)
   end
 
   def create

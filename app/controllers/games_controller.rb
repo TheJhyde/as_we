@@ -2,8 +2,8 @@ class GamesController < ApplicationController
   def create
     game = Game.create
     host = Player.create(game: game, host: true)
-    session[:current_player] = host.id
-    session[:current_game] = game.id
+    cookies[:current_player] = host.id
+    cookies[:current_game] = game.id
     redirect_to game
   end
 
@@ -19,7 +19,7 @@ class GamesController < ApplicationController
   def update
     game = Game.find(params[:id])
     if game_params[:state] == "running" && game.state != "running"
-      game.start_game("Hello Friend")
+      game.start
     elsif game_params[:state] == "end" && game.state != "end"
       game.end
     end

@@ -1,20 +1,40 @@
--Should probably upgrade my local npm
--Upgrade yarn, it's old 
+Big Picture:
+-After changing the message thing, I have to make sure I didn't break anything else
+-So now's probably the time to bite the bullet and write some tests
+
+-ActionCable seems kind of unreliable?
 
 Root Page
   -What if someone loses their session or cookies somehow? There should be a login method by name
+  -Initial Styling
 
 Host Page 
-  -Sending out alerts on a timer
-  -Update player list through websockets
+  -Game timer
+  -How does the host get their connections to players?
+    -Use the player list
+  -Initial Styling
 
 Player Page
-  -Notifications
-  -Design
-  
+  -When a player leaves
+    -Sending a message to their conversation partners - "#{number} has disconnected"
+    -Giving the player themselves their fate
+    -Preventing a player who's left from sending any messages
+      -(You can send messages to players who've left. That's poigent, yo)
+  -Like... any security
+  -Test styling for end of game
+
 Conversation Page
-  -Other conversations sidebar
-  -Notifications also
-  -Adding conversations from links
-    -Conversation creation needs an error for conversations that already exist
-      -Or, just bring them the preexisting conversation
+  -Host should have two rows of notifications
+  -Scroll down to the bottom on page load, when a message is sent
+
+TO ASK ALEX
+-I'm giving each of the players a five number code - that good? Should it be more like a phone number, 10 digits?
+-Does the host need or want the ability to read everyone's messages?
+-Should I restrict the host's ability to talk to people without getting their numbers?
+-Do we want to save the messages for later review?
+
+Styling
+
+Player Page:
+  -Connecting... message, with an animation during pre-game
+  -Disconnected, during post game

@@ -14,6 +14,8 @@
     <% flash.each do |k, v| %>
       <%= content_tag :div, v, class: "flash #{k}" %>
     <% end %>
-    <%= yield %>
+    <div class="<%= yield :page_classes %>">
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def root
-    if current_player && current_player.game
+    if current_player && current_player.game && !current_player.left
       if current_player.host
         redirect_to game_path(current_player.game)
       else
