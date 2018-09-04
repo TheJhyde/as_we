@@ -1,10 +1,22 @@
 <h1>AS WE KNOW IT</h1>
-
-<%= form_for @game do |f| %>
-  <%= f.submit "Create a Game" %>
-<% end %>
+<div class="centered">
+  by Alex McConnaughey<br>
+  developed by Alexa Kirchner
+</div>
 <br/>
-<%= form_for @player do |f| %>
-  <%= f.label :code, "Game Code" %> <%= f.text_field :code %><br/>
-  <%= f.submit "Join a Game" %>
-<% end %>
+<br/>
+<br/>
+
+<div class="centered">
+  <%= form_for @game do |f| %>
+    <%= f.submit "create a new game" %>
+  <% end %>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <%= form_for @player do |f| %>
+    <%= f.label :code, "Game Code" %> <%= f.text_field :code %><br/><br/>
+    <%= f.submit "join a game" %>
+  <% end %>
+</div>

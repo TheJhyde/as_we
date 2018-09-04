@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+
+body{
+  background-color: #290000;
+  color: #DDD;
+}
+
+h1{
+  text-align: center;
+  font-size: 100px;
+}
+
+input[type="submit"]{
+  font-size: 20px;
+  background-color: #DDD;
+  border-radius: 10px;
+}
+
+.centered{
+  text-align: center;
+}

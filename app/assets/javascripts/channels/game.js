@@ -28,7 +28,6 @@ function conversationPage(player_id, conversation_id){
           default:
             console.log("Received message of type", data.type)
         }
-        console.log("Received from channel:", data);
       }, 
       rejected: () => console.log("Rejected!")
     }

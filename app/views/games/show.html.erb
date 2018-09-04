@@ -12,7 +12,7 @@
 </div>
 
 <div>
-  <h1>Player List</h1>
+  <h2>Player List</h2>
   Click on a player to start a conversation with them.
   <ul id="player-list">
     <% @game.players.each do |player| %>
@@ -29,14 +29,14 @@
 </div>
 
 <br/>
-<h1>Host (<%= @host.number %>)</h1>
+<h2>Host (<%= @host.number %>)</h2>
 <%= render partial: "players/conversation_list", locals: {player: @host, conversations: @host.conversations, use_from: false} %>
 
 <h1>HRN</h1>
 <%= render partial: "players/conversation_list", locals: {player: @hrn, conversations: @hrn.conversations.eager_load(:games).where(games: {id: @game.id}), use_from: true} %>
 
 <% if false %>
-<h1>HRN</h1>
+<h2>HRN</h2>
   <!-- We want to filter out the players who aren't part of the current game here  -->
   <div id="conversations">
     <% @hrn.conversations.each do |conversation| %>

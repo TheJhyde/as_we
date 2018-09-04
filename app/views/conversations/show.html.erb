@@ -1,8 +1,8 @@
 <% content_for :page_classes, "in-game conversation-page" %>
 
 <div id="player-banner">
-  <%= link_to player_path(@from) do %>
-    <div id="nav" <% if @from.any_unread? %>class="notifications"<% end %> ><-</div>
+  <%= link_to @from.host ? game_path(@from.game) : player_path(@from) do %>
+    <div id="nav" <% if @from.any_unread? %>class="notification"<% end %> ><-</div>
   <% end %>
   <div>
     <%= @conversation.players.pluck(:number).join(", ") %><br>

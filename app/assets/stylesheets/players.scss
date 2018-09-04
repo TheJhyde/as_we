@@ -60,6 +60,10 @@
   100% { opacity: 1; }
 }
 
+.notification{
+  background-color: lightblue;
+}
+
 // @media screen and (max-width: 600px){
   body{
     margin: 0;
@@ -78,10 +82,6 @@
       height: 15px;
       border: solid white 1px;
       border-radius: 3px;
-
-      .notification{
-        background-color: lightblue;
-      }
     }
 
     a {

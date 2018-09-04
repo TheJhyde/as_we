@@ -1,14 +1,13 @@
 Big Picture:
--Test the notifications, make them work this new header
--How to test channels?
+-How to test channels? 
 
 Root Page
   -What if someone loses their session or cookies somehow? There should be a login method by name
-  -Initial Styling
 
 Host Page 
   -Game timer
   -Initial Styling
+  -All the HRN conversations are being added by the JS as "HRN" instead of who they're too
 
 Player Page
   -When a player leaves
@@ -17,11 +16,15 @@ Player Page
     -Preventing a player who's left from sending any messages
       -(You can send messages to players who've left. That's poigent, yo)
   -Like... any security
-  -Test styling for end of game
+  -When game starts, a "Connected!" message that disappears after a little bit
+  -New conversations aren't being added to the conversation list by the JS
 
 Conversation Page
   -Host should have two rows of notifications
+    -Split screen?
   -Scroll down to the bottom on page load, when a message is sent
+  -The back button in the header should return to the game when the player's the host
+  -Styling links so they're actually visible, instead of blue on blue
 
 TO ASK ALEX
 -I'm giving each of the players a five number code - that good? Should it be more like a phone number, 10 digits?
@@ -32,5 +35,5 @@ TO ASK ALEX
 Styling
 
 Player Page:
-  -Connecting... message, with an animation during pre-game
+  -Styling should be dark background/light text - people are going to be reading this in the dark
   -Disconnected, during post game
