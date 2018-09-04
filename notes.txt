@@ -1,8 +1,6 @@
 Big Picture:
--After changing the message thing, I have to make sure I didn't break anything else
--So now's probably the time to bite the bullet and write some tests
-
--ActionCable seems kind of unreliable?
+-Test the notifications, make them work this new header
+-How to test channels?
 
 Root Page
   -What if someone loses their session or cookies somehow? There should be a login method by name
@@ -10,8 +8,6 @@ Root Page
 
 Host Page 
   -Game timer
-  -How does the host get their connections to players?
-    -Use the player list
   -Initial Styling
 
 Player Page

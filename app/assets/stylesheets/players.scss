@@ -78,6 +78,10 @@
       height: 15px;
       border: solid white 1px;
       border-radius: 3px;
+
+      .notification{
+        background-color: lightblue;
+      }
     }
 
     a {
@@ -106,7 +110,7 @@
     }
   }
 
-  .conversations h4{
+  h4{
     text-align: center;
     margin: 0px;
     margin-top: 20px;

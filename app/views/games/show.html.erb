@@ -13,9 +13,14 @@
 
 <div>
   <h1>Player List</h1>
+  Click on a player to start a conversation with them.
   <ul id="player-list">
     <% @game.players.each do |player| %>
-      <li><%= player.number %><% if player.host? %> (HOST)<% end %></li>
+      <% if player.host? %>
+        <li><%= player.number %>(HOST)</li>
+      <% else %>
+        <li><%= link_to player.number, conversations_path(players: [player.id, @host.id]), method: :post %></li>
+      <% end %>
     <% end %>
     <% if @game.players.count == 5 %>
       There are four players online and the game may begin.
@@ -24,12 +29,11 @@
 </div>
 
 <br/>
-<h1>Host</h1>
-<%= @host.number %>
-<%= render partial: "players/conversation_list", locals: {player: @host, conversations: @host.conversations} %>
+<h1>Host (<%= @host.number %>)</h1>
+<%= render partial: "players/conversation_list", locals: {player: @host, conversations: @host.conversations, use_from: false} %>
 
 <h1>HRN</h1>
-<%= render partial: "players/conversation_list", locals: {player: @hrn, conversations: @hrn.conversations.eager_load(:games).where(games: {id: @game.id})} %>
+<%= render partial: "players/conversation_list", locals: {player: @hrn, conversations: @hrn.conversations.eager_load(:games).where(games: {id: @game.id}), use_from: true} %>
 
 <% if false %>
 <h1>HRN</h1>
@@ -44,7 +48,7 @@
 <% end %>
 
 <script>
-  gameChannel(<%= @host.id %>, null);
-  gameChannel(<%= @hrn.id %>, null);
+  playerPage(<%= @host.id %>);
+  playerPage(<%= @hrn.id %>);
   hostChannel(<%= @game.id %>, null);
 </script>

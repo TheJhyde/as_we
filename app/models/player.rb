@@ -28,6 +28,10 @@ class Player < ApplicationRecord
     convo
   end
 
+  def any_unread?
+    notifications.any?{|n| !n.seen?}
+  end
+
   private
     def set_number
       unless self.number

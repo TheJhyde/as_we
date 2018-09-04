@@ -2,7 +2,7 @@
 
 <div id="player-banner">
   <%= link_to player_path(@from) do %>
-    <div id="nav"><-</div>
+    <div id="nav" <% if @from.any_unread? %>class="notifications"<% end %> ><-</div>
   <% end %>
   <div>
     <%= @conversation.players.pluck(:number).join(", ") %><br>
@@ -23,5 +23,5 @@
 </div>
 
 <script>
-  gameChannel(<%= @from.id %>, <%= @conversation.id %>)
+  conversationPage(<%= @from.id %>, <%= @conversation.id %>)
 </script>

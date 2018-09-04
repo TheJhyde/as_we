@@ -1,5 +1,5 @@
 <div class="<%= message.player == current_player ? "from" : "to" %> message">
-  <strong><%= message.from.number %></strong><br>
+  <strong><%= message.player.number %></strong><br>
   <% if message.extra_info.has_key?("links") %>
     <% 
       contents = sanitize(message.contents)

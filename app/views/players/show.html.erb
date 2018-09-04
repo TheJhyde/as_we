@@ -16,8 +16,10 @@
     The game will begin shortly.
   <% end %>
 </div>
-<%= render partial: "conversation_list", locals: {player: @player, conversations: @player.conversations} %>
+<% if @player.game.state != "before" %>
+  <%= render partial: "conversation_list", locals: {player: @player, conversations: @player.conversations, use_from: false} %>
+<% end %>
 
 <script>
-  gameChannel(<%= @player.id %>);
+  playerPage(<%= @player.id %>);
 </script>

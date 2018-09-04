@@ -8,7 +8,7 @@ class GameChannel < ApplicationCable::Channel
   end
 
   def send_message(data)
-    msg = Message.create(contents: data["contents"], conversation_id: data["conversation_id"], from_id: data["from_id"])
+    msg = Message.create(contents: data["contents"], conversation_id: data["conversation_id"], player_id: data["player_id"])
   end
 
   def mark_read(data)
