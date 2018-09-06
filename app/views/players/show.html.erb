@@ -16,9 +16,7 @@
     The game will begin shortly.
   <% end %>
 </div>
-<% if @player.game.state != "before" %>
-  <%= render partial: "conversation_list", locals: {player: @player, conversations: @player.conversations, use_from: false} %>
-<% end %>
+<%= render partial: "conversation_list", locals: {player: @player, conversations: @player.conversations, use_from: false} %>
 
 <script>
   playerPage(<%= @player.id %>);

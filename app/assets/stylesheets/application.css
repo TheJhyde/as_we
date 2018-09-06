@@ -16,12 +16,16 @@
 
 body{
   background-color: #290000;
-  color: #DDD;
+  /*This is discord-text-grey*/
+  color: #dcddde;
+}
+
+a{
+  color: #0096cf;
 }
 
 h1{
   text-align: center;
-  font-size: 100px;
 }
 
 input[type="submit"]{

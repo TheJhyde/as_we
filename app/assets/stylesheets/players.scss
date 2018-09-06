@@ -10,6 +10,7 @@
 
 .unseen{
   background-color: #00BFFF;
+  font-weight: bold;
 }
 
 .one {
@@ -64,67 +65,65 @@
   background-color: lightblue;
 }
 
-// @media screen and (max-width: 600px){
-  body{
-    margin: 0;
-    overflow-x: hidden;
+body{
+  margin: 0;
+  overflow-x: hidden;
+}
+
+#player-banner{
+  color: white;
+  padding: 5px;
+  vertical-align: middle;
+  width: 100%;
+  border-bottom: 1px solid white;
+
+  #nav{
+    width: 15px;
+    height: 15px;
+    border: solid white 1px;
+    border-radius: 3px;
   }
 
-  #player-banner{
+  a {
+    text-decoration: none;
     color: white;
-    background-color: blue;
-    padding: 5px;
-    vertical-align: middle;
-    width: 100%;
-
-    #nav{
-      width: 15px;
-      height: 15px;
-      border: solid white 1px;
-      border-radius: 3px;
-    }
-
-    a {
-      text-decoration: none;
-      color: white;
-    }
-    a:visited{
-      color: white;
-    }
-
-    div{
-      display: inline-block
-    }
-
-    .number{
-      text-decoration: underline;
-    }
+  }
+  a:visited{
+    color: white;
   }
 
-  #game-state{
-    padding-top: 20px;
-    text-align: center;
-    font-size: 12px;
-    h3{
-      font-size: 20px
-    }
+  div{
+    display: inline-block
   }
 
-  h4{
-    text-align: center;
-    margin: 0px;
-    margin-top: 20px;
-    font-size: 25px;
+  .number{
+    text-decoration: underline;
   }
+}
 
-  .conversation{
-    display: block;
-    border: solid black;
-    border-width: 1px 0px 1px 0px;
-    font-size: 20px;
+#game-state{
+  font-size: 12px;
+  padding: 20px 0;
+  text-align: center;
+  h3{
+    font-size: 20px
   }
+}
 
-  .unseen{
-    background-color: #00BFFF;
-  }
-// }
+h4{
+  text-align: center;
+  margin: 0px;
+  margin-top: 20px;
+  font-size: 25px;
+}
+
+.conversation{
+  display: block;
+  border: solid black;
+  border-width: 1px 0px 1px 0px;
+  font-size: 20px;
+}
+
+.unseen{
+  background-color: #00BFFF;
+}

@@ -35,7 +35,10 @@ class Message < ApplicationRecord
 
     def broadcast
       broadcast = {message: self.contents, number: self.player.number, player: self.player.id, extra: self.extra, conversation: self.conversation.id, type: "msg"}
-      self.conversation.players.each do |player|
+
+      players = self.conversation.players
+      players.each do |player|
+        broadcast[:tab] = players.where.not(id: player.id).pluck(:number).join(", ")
         player.broadcast_to(broadcast)
       end
       # ActionCable.server.broadcast("chat_Conversation_#{self.conversation.id}", message: self.contents, number: self.player.number, extra: self.extra)

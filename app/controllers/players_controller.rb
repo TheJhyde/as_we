@@ -14,5 +14,8 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.includes(:game, :conversations).find(params[:id])
+    if @player.host || @player.number == "HRN"
+      redirect_to current_player.game and return
+    end
   end
 end

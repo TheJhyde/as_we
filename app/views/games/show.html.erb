@@ -1,51 +1,41 @@
 <% content_for :page_classes, "in-game" %>
 
-<div>
-  <strong>Code</strong>: <%= @game.code %><br>
-  <strong>State</strong>: <%= @game.state %>
-  <% if @game.state != "end" %>
-    <%= form_for @game do |f| %>
-      <%= f.hidden_field :state, value: @game.state == "before" ? "running" : "end" %>
-      <%= f.submit @game.state == "before" ? "Start Game" : "End Game" %>
-    <% end %>
-  <% end %>
-</div>
-
-<div>
-  <h2>Player List</h2>
-  Click on a player to start a conversation with them.
-  <ul id="player-list">
-    <% @game.players.each do |player| %>
-      <% if player.host? %>
-        <li><%= player.number %>(HOST)</li>
-      <% else %>
-        <li><%= link_to player.number, conversations_path(players: [player.id, @host.id]), method: :post %></li>
-      <% end %>
-    <% end %>
-    <% if @game.players.count == 5 %>
-      There are four players online and the game may begin.
-    <% end %>
-  </ul>
-</div>
-
-<br/>
-<h2>Host (<%= @host.number %>)</h2>
-<%= render partial: "players/conversation_list", locals: {player: @host, conversations: @host.conversations, use_from: false} %>
-
-<h1>HRN</h1>
-<%= render partial: "players/conversation_list", locals: {player: @hrn, conversations: @hrn.conversations.eager_load(:games).where(games: {id: @game.id}), use_from: true} %>
-
-<% if false %>
-<h2>HRN</h2>
-  <!-- We want to filter out the players who aren't part of the current game here  -->
-  <div id="conversations">
-    <% @hrn.conversations.each do |conversation| %>
-      <% if conversation.players.pluck(:game_id).include?(@game.id) %>
-        <%= link_to (conversation.players.pluck(:number) - ["HRN"]).join(","), conversation_path(conversation, from: @hrn.id) %><br>
+<div id="game-page">
+  <div id="game-info">
+    <strong>Game Code</strong>: <%= @game.code %><br>
+    <strong>Game State</strong>: <%= @game.state %>
+    <% if @game.state != "end" %>
+      <%= form_for @game do |f| %>
+        <%= f.hidden_field :state, value: @game.state == "before" ? "running" : "end" %>
+        <%= f.submit @game.state == "before" ? "Start Game" : "End Game" %>
       <% end %>
     <% end %>
   </div>
-<% end %>
+  <br>
+  <div>
+    <h3>Player List</h3>
+    Click on a player to start a conversation with them.
+    <ul id="player-list">
+      <% @game.players.each do |player| %>
+        <% if player.host? %>
+          <li><%= player.number %> (HOST)</li>
+        <% else %>
+          <li><%= link_to player.number, conversations_path(players: [player.id, @host.id]), method: :post %></li>
+        <% end %>
+      <% end %>
+      <% if @game.players.count == 5 %>
+        There are four players online and the game may begin.
+      <% end %>
+    </ul>
+  </div>
+
+  <br/>
+  <h2>Host Conversations(<%= @host.number %>)</h2>
+  <%= render partial: "players/conversation_list", locals: {player: @host, conversations: @host.conversations, use_from: false} %>
+
+  <h2>HRN Conversations</h2>
+  <%= render partial: "players/conversation_list", locals: {player: @hrn, conversations: @hrn.conversations.eager_load(:games).where(games: {id: @game.id}), use_from: true} %>
+</div>
 
 <script>
   playerPage(<%= @host.id %>);

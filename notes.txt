@@ -1,30 +1,31 @@
 Big Picture:
 -How to test channels? 
+-Firefox seems finicky with channels
+  -I can build this with ajax calls. But I'd have to 1. do it and 2. detect the failure to connect to the channel and switch over to ajax styles
 
-Root Page
+Root page
   -What if someone loses their session or cookies somehow? There should be a login method by name
 
 Host Page 
   -Game timer
-  -Initial Styling
-  -All the HRN conversations are being added by the JS as "HRN" instead of who they're too
+  -List of news updates, posted and to come
 
 Player Page
+  -Like... any security
+    -Non-hosts shouldn't be able to see the game
+    -players should only be able to see their own player page
+    -Players shouldn't be able to see conversations they're not a part of
+  -When game starts, a "Connected!" message that disappears after a little bit
   -When a player leaves
     -Sending a message to their conversation partners - "#{number} has disconnected"
     -Giving the player themselves their fate
     -Preventing a player who's left from sending any messages
       -(You can send messages to players who've left. That's poigent, yo)
-  -Like... any security
-  -When game starts, a "Connected!" message that disappears after a little bit
-  -New conversations aren't being added to the conversation list by the JS
 
 Conversation Page
-  -Host should have two rows of notifications
-    -Split screen?
-  -Scroll down to the bottom on page load, when a message is sent
-  -The back button in the header should return to the game when the player's the host
-  -Styling links so they're actually visible, instead of blue on blue
+  -Add "DISCONNECTED" or "LEFT" message to the conversation page when the game is over.
+    -Roll this into the leaving system
+  -Is HRN not receiving it's own messages in the chat when they're sent?
 
 TO ASK ALEX
 -I'm giving each of the players a five number code - that good? Should it be more like a phone number, 10 digits?
@@ -32,8 +33,11 @@ TO ASK ALEX
 -Should I restrict the host's ability to talk to people without getting their numbers?
 -Do we want to save the messages for later review?
 
-Styling
 
-Player Page:
-  -Styling should be dark background/light text - people are going to be reading this in the dark
-  -Disconnected, during post game
+
+
+
+
+TO DO BUT NOT RIGHT NOW, THIS STUFF DOESN'T MATTER RIGHT NOW
+-The link text is different in from messages vs too messages, which bothers me. It should be consistent, lest the players read into it
+-There's a lot of empty space at the bottom of the conversation screen. should probably do something about that

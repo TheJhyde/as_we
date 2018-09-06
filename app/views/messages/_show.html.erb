@@ -1,14 +1,18 @@
 <div class="<%= message.player == current_player ? "from" : "to" %> message">
-  <strong><%= message.player.number %></strong><br>
-  <% if message.extra_info.has_key?("links") %>
-    <% 
-      contents = sanitize(message.contents)
-      message.extra_info["links"].each do |link|
-        contents.gsub!(link["number"], link_to(link["number"], conversations_path(players: [link["id"], current_player.id]), method: :post))
-      end
-    %>
-    <%= contents.html_safe %>
-  <% else %>
-    <%= message.contents %>
-  <% end %>
+  <div class="chat-player-number">
+    <%= message.player.number %>
+  </div>
+  <div class="message-contents">
+    <% if message.extra_info.has_key?("links") %>
+      <% 
+        contents = sanitize(message.contents)
+        message.extra_info["links"].each do |link|
+          contents.gsub!(link["number"], link_to(link["number"], conversations_path(players: [link["id"], current_player.id]), method: :post))
+        end
+      %>
+      <%= contents.html_safe %>
+    <% else %>
+      <%= message.contents %>
+    <% end %>
+  </div>
 </div>

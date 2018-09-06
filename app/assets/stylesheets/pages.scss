@@ -1,3 +1,27 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@media screen and (min-width: 1200px){
+  h1{
+    font-size: 6em;
+    margin-bottom: 0px;
+  }
+}
+@media screen and (max-width: 1200px){
+  h1{
+    font-size: 2.6em;
+  }
+}
+
+  
+
+#login{
+  margin: 20px auto;
+  padding: 0 20px;
+  max-width: 800px;
+}
+
+#title{
+  padding: 20px 0;
+}
