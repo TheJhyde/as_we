@@ -5,6 +5,7 @@ Big Picture:
 
 Root page
   -What if someone loses their session or cookies somehow? There should be a login method by name
+  -Text is too small on mobile, should be much bigger
 
 Host Page 
   -Game timer
