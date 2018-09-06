@@ -23,7 +23,7 @@
           <li><%= link_to player.number, conversations_path(players: [player.id, @host.id]), method: :post %></li>
         <% end %>
       <% end %>
-      <% if @game.players.count == 5 %>
+      <% if @game.players.count == 5 && @game.state == "before" %>
         There are four players online and the game may begin.
       <% end %>
     </ul>

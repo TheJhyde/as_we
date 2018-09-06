@@ -3,9 +3,21 @@ Big Picture:
 -Firefox seems finicky with channels
   -I can build this with ajax calls. But I'd have to 1. do it and 2. detect the failure to connect to the channel and switch over to ajax styles
 
+When I closed the brower, I lost all the cookies, everything. That's terrible
+  -Ideally I could fix this
+  -Failing that, I should bite the bullet and make the login page
+
+-Text is too small on mobile, should be much bigger
+    -The styling I've already done is successfully uploaded - what kind of dimensions am I dealing with here?
+    -I kind of want some kind of scaling font size
+  The font inside HRN's conversations, any only HRN's conversations, is a good size. Everything else is just absolute garbage. Why the difference?
+  The header is unusable, much too small to use the back button
+  When I click on the font box, it zooms in on just the box, so I have to move to hit the submit button.
+    And then I'm zoomed in at a weird way
+Can't submit from the keyboard on mobile in the text area. Should use text box instead maybe
+
 Root page
   -What if someone loses their session or cookies somehow? There should be a login method by name
-  -Text is too small on mobile, should be much bigger
 
 Host Page 
   -Game timer
@@ -27,6 +39,10 @@ Conversation Page
   -Add "DISCONNECTED" or "LEFT" message to the conversation page when the game is over.
     -Roll this into the leaving system
   -Is HRN not receiving it's own messages in the chat when they're sent?
+  -Not sure if notification button is updating correctly
+    -Even numbered notifications turn the notification back off again, which is wrong obvs
+    -Sender of the message gets notifications sometimes?
+  -I think I want timestamps on messages
 
 TO ASK ALEX
 -I'm giving each of the players a five number code - that good? Should it be more like a phone number, 10 digits?
