@@ -19,6 +19,11 @@ class PlayersController < ApplicationController
     end
   end
 
+  
+  def update
+
+  end
+
   def login_page
     @players = Player.where(left: false)
   end
