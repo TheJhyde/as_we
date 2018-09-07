@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "pages#root"
+  get "players/login", to: "players#login_page"
+  post "players/login", to: "players#login"
 
   mount ActionCable.server => "/cable"
 

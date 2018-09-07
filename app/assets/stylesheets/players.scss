@@ -1,8 +1,66 @@
+// -------------------- SIZES -------------------
+// Big
+@media screen and (min-width: 1200px){
+  #player-banner{
+    font-size: 20px;
+    #nav{
+      width: 20px;
+    }
+
+    a{
+      height: 30px;
+      width: 30px;
+    }
+
+  }
+
+  #game-state{
+    font-size: 12px;
+    h3{
+      font-size: 20px
+    }
+  }
+
+  .conversation{
+    font-size: 20px;
+    padding: 5px;
+  }
+}
+
+// Small
+@media screen and (max-width: 1200px){
+  #player-banner{
+    font-size: 7vw;
+    #nav{
+      width: 7vw;
+    }
+
+    a{
+      width: 7vw;
+      height: 7vw;
+    }
+  }
+
+  #game-state{
+    font-size: 4vw;
+    h3{
+      font-size: 6vw;
+    }
+  }
+
+  .conversation{
+    font-size: 6vw;
+    padding: 20px;
+  }
+}
+
+// -------------------- NOT SIZES ---------------
 .conversation{
-  display: inline-block;
-  padding: 10px;
   color: black;
   background: #F0F8FF;
+  display: block;
+  border: solid black;
+  border-width: 1px 0px 1px 0px;
   a {
     color: black;
   }
@@ -13,6 +71,57 @@
   font-weight: bold;
 }
 
+.notification{
+  background-color: lightblue;
+}
+
+body{
+  margin: 0;
+  overflow-x: hidden;
+}
+
+#player-banner{
+  border-bottom: 1px solid white;
+  color: white;
+  padding: 5px;
+  width: 100%;
+
+  a{
+    display: inline-block;
+  }
+
+  img{
+    border: solid white 1px;
+    border-radius: 3px;  
+  }
+
+  div{
+    display: inline-block
+  }
+
+  .number{
+    text-decoration: underline;
+  }
+}
+
+#game-state{
+  padding: 20px 0;
+  text-align: center;
+}
+
+h4{
+  text-align: center;
+  margin: 0px;
+  margin-top: 20px;
+  font-size: 25px;
+}
+
+.unseen{
+  background-color: #00BFFF;
+}
+
+
+// Animation for the Connecting... game state
 .one {
   opacity: 0;
   -webkit-animation: one 1.3s infinite;
@@ -59,72 +168,4 @@
   50% { opacity: 0; }
   75% { opacity: 1; }
   100% { opacity: 1; }
-}
-
-.notification{
-  background-color: lightblue;
-}
-
-body{
-  margin: 0;
-  overflow-x: hidden;
-}
-
-#player-banner{
-  border-bottom: 1px solid white;
-  color: white;
-  font-size: 30px;
-  padding: 5px;
-  vertical-align: middle;
-  width: 100%;
-
-  #nav{
-    width: 30px;
-    height: 30px;
-    border: solid white 1px;
-    border-radius: 3px;
-  }
-
-  a {
-    text-decoration: none;
-    color: white;
-  }
-  a:visited{
-    color: white;
-  }
-
-  div{
-    display: inline-block
-  }
-
-  .number{
-    text-decoration: underline;
-  }
-}
-
-#game-state{
-  font-size: 12px;
-  padding: 20px 0;
-  text-align: center;
-  h3{
-    font-size: 20px
-  }
-}
-
-h4{
-  text-align: center;
-  margin: 0px;
-  margin-top: 20px;
-  font-size: 25px;
-}
-
-.conversation{
-  display: block;
-  border: solid black;
-  border-width: 1px 0px 1px 0px;
-  font-size: 20px;
-}
-
-.unseen{
-  background-color: #00BFFF;
 }

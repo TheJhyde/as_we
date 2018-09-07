@@ -2,19 +2,30 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// This is the big screen version
+// As in, the minimum width these rules will apply at is 1200px
 @media screen and (min-width: 1200px){
   h1{
     font-size: 6em;
     margin-bottom: 0px;
   }
 }
+
+// The maximum width these rules will apply at is 1200px
+// So these are my mobile rules
 @media screen and (max-width: 1200px){
+  body{
+    font-size: 4vw;
+  }
+
   h1{
-    font-size: 2.6em;
+    font-size: 10vw;
+  }
+
+  input{
+    font-size: 4vw;
   }
 }
-
-  
 
 #login{
   margin: 20px auto;

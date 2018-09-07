@@ -1,0 +1,13 @@
+<div id="login">
+  <% if @players.length == 0 %>
+    There are no active games right now.
+  <% else %>
+    Select your number to rejoin the game. Please don't cheat!
+    <ul>
+      <% @players.each do |player| %>
+        <li><%= link_to player.number, players_login_path(id: player), method: :post%></li>
+      <% end %>
+    </ul>
+    If you don't see your number, the game you were a part of may have ended. If you can't remember your number, please contact your host.
+  <% end %>
+</div>

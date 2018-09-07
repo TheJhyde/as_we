@@ -38,7 +38,7 @@ function conversationPage(player_id, conversation_id){
             if(chat.length > 0 && data.conversation == conversation_id){
               add_chat_message(chat, data, player_id);
             }else{
-              $("#nav").toggleClass("notification");
+              $("#nav").addClass("notification");
             }
             break;
           case "state":

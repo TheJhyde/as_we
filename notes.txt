@@ -1,20 +1,15 @@
 Big Picture:
+-Login Page
+-Leaving System
+
+
 -How to test channels? 
 -Firefox seems finicky with channels
   -I can build this with ajax calls. But I'd have to 1. do it and 2. detect the failure to connect to the channel and switch over to ajax styles
 
-When I closed the brower, I lost all the cookies, everything. That's terrible
+When I closed the brower on mobile, I lost all the cookies, everything. That's terrible
   -Ideally I could fix this
   -Failing that, I should bite the bullet and make the login page
-
--Text is too small on mobile, should be much bigger
-    -The styling I've already done is successfully uploaded - what kind of dimensions am I dealing with here?
-    -I kind of want some kind of scaling font size
-  The font inside HRN's conversations, any only HRN's conversations, is a good size. Everything else is just absolute garbage. Why the difference?
-  The header is unusable, much too small to use the back button
-  When I click on the font box, it zooms in on just the box, so I have to move to hit the submit button.
-    And then I'm zoomed in at a weird way
-Can't submit from the keyboard on mobile in the text area. Should use text box instead maybe
 
 Root page
   -What if someone loses their session or cookies somehow? There should be a login method by name
@@ -28,7 +23,6 @@ Player Page
     -Non-hosts shouldn't be able to see the game
     -players should only be able to see their own player page
     -Players shouldn't be able to see conversations they're not a part of
-  -When game starts, a "Connected!" message that disappears after a little bit
   -When a player leaves
     -Sending a message to their conversation partners - "#{number} has disconnected"
     -Giving the player themselves their fate
@@ -40,9 +34,7 @@ Conversation Page
     -Roll this into the leaving system
   -Is HRN not receiving it's own messages in the chat when they're sent?
   -Not sure if notification button is updating correctly
-    -Even numbered notifications turn the notification back off again, which is wrong obvs
     -Sender of the message gets notifications sometimes?
-  -I think I want timestamps on messages
 
 TO ASK ALEX
 -I'm giving each of the players a five number code - that good? Should it be more like a phone number, 10 digits?
@@ -54,7 +46,10 @@ TO ASK ALEX
 
 
 
-
 TO DO BUT NOT RIGHT NOW, THIS STUFF DOESN'T MATTER RIGHT NOW
 -The link text is different in from messages vs too messages, which bothers me. It should be consistent, lest the players read into it
 -There's a lot of empty space at the bottom of the conversation screen. should probably do something about that
+-I think I want timestamps on messages
+-When game starts, a "Connected!" message that disappears after a little bit
+-"Return to Front Page" link when game's over on game, player maybe?
+-Order of conversations - I'd like HRN to be on top all the time.x`

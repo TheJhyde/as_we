@@ -11,6 +11,8 @@
     <%= f.text_field :code %><br/><br/>
     <%= f.submit "Join Existing Game" %>
   <% end %>
+  <br>
+  (<%= link_to "Click here", players_login_path %> to rejoin a game already in progress)
   <br/>
   <br/>
   <br/>
@@ -19,3 +21,13 @@
     <%= f.submit "Create a New Game" %>
   <% end %>
 </div>
+
+<!-- 
+<div id="info">
+
+</div>
+
+<script>
+  var w = $(window);
+  $("#info").html(w.width() + ", " + w.height());
+</script> -->

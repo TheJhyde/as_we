@@ -1,11 +1,11 @@
 <% content_for :page_classes, "in-game conversation-page" %>
 
 <div id="player-banner">
-  <%= link_to @from.host ? game_path(@from.game) : player_path(@from) do %>
-    <div id="nav" <% if @from.any_unread? %>class="notification"<% end %> >
-      <%= image_tag "back.png", width: "30" %>
-    </div>
-  <% end %>
+  <div>
+    <%= link_to @from.host ? game_path(@from.game) : player_path(@from) do %>
+      <%= image_tag "back.png", id: "nav", class: @from.any_unread? ? "notification" : "" %>
+    <% end %>
+  </div>
   <div>
     <%= @conversation.players.pluck(:number).join(", ") %><br>
   </div>
@@ -19,7 +19,7 @@
 
 <div id="submit-form">
   <%= form_with url: '#', html: {id: 'new-message'} do |f| %>
-    <%= f.text_area :contents, id: "message-body", rows: 2 %>
+    <%= f.text_field :contents, id: "message-body", rows: 2 %>
     <%= f.submit "SEND", id: "message-submit" %>
   <% end %>
 </div>
