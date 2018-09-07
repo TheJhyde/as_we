@@ -71,15 +71,16 @@ body{
 }
 
 #player-banner{
+  border-bottom: 1px solid white;
   color: white;
+  font-size: 30px;
   padding: 5px;
   vertical-align: middle;
   width: 100%;
-  border-bottom: 1px solid white;
 
   #nav{
-    width: 15px;
-    height: 15px;
+    width: 30px;
+    height: 30px;
     border: solid white 1px;
     border-radius: 3px;
   }

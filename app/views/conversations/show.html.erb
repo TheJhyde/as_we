@@ -2,7 +2,9 @@
 
 <div id="player-banner">
   <%= link_to @from.host ? game_path(@from.game) : player_path(@from) do %>
-    <div id="nav" <% if @from.any_unread? %>class="notification"<% end %> ><-</div>
+    <div id="nav" <% if @from.any_unread? %>class="notification"<% end %> >
+      <%= image_tag "back.png", width: "30" %>
+    </div>
   <% end %>
   <div>
     <%= @conversation.players.pluck(:number).join(", ") %><br>
