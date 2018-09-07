@@ -22,7 +22,7 @@ class Game < ApplicationRecord
     p = self.players.where(host: false).to_a
     host = [self.players.find_by(host: true)]
 
-    if Rails.env.development? && true
+    if Rails.env.development? && false
       NewsUpdateJob.set(wait: 15.seconds).perform_later(p + host, "UPDATE: Yo what up")
       NewsUpdateJob.set(wait: 30.seconds).perform_later(p + host, "UPDATE: Just two regular updates")
       NewsUpdateJob.set(wait: 1.minutes).perform_later(p, "Here's the host's number: #{host[0].number}")
@@ -38,12 +38,19 @@ class Game < ApplicationRecord
 
       NewsUpdateJob.set(wait: 10.minutes).perform_later(p.values_at(2, 3) + host, "UPDATE: Aliens found a human safe house. Most humans killed, some taken captive. Please stay inside")
 
-      NewsUpdateJob.set(wait: 12.minutes).perform_later(p.values_at(1) + host, "UPDATE: We have been able to establish limited text communication. This phone number should connect you to another survivor. Please stay inside. #{p[0].number}")
-      NewsUpdateJob.set(wait: 12.minutes+10.seconds).perform_later(p.values_at(2) + host, "UPDATE: We have been able to establish limited text communication. This phone number should connect you to another survivor. Please stay inside. #{p[3].number}")
+      if p[0]
+        NewsUpdateJob.set(wait: 12.minutes).perform_later(p.values_at(1) + host, "UPDATE: We have been able to establish limited text communication. This phone number should connect you to another survivor: #{p[0].number}. Please stay inside.")
+      end
+
+      if p[3]
+        NewsUpdateJob.set(wait: 12.minutes+10.seconds).perform_later(p.values_at(2) + host, "UPDATE: We have been able to establish limited text communication. This phone number should connect you to another survivor: #{p[3].number}. Please stay inside.")
+      end
 
       NewsUpdateJob.set(wait: 17.minutes).perform_later(players + host, "UPDATE: Aliens have offered 'leniency to any human that surrenders itself peacefully. It will be sterilized and allowed to live its life in captivity.' Please stay inside.")
 
-      NewsUpdateJob.set(wait: 20.minutes).perform_later(p.values_at(2) + host, "UPDATE: We have been able to establish further text communication. This phone number should connect you to another survivor. Please stay inside. #{p[0].number}")
+      if p[0]
+        NewsUpdateJob.set(wait: 20.minutes).perform_later(p.values_at(2) + host, "UPDATE: We have been able to establish further text communication. This phone number should connect you to another survivor: #{p[0].number}. Please stay inside.")
+      end
 
       NewsUpdateJob.set(wait: 25.minutes).perform_later(p.values_at(0, 2, 3) + host, "UPDATE: New safehouse established in Colorado Springs. Fresh food and water available. Only seek it out if you can reach it safely without being followed. Otherwise, please stay inside.")
 
