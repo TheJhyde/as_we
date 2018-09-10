@@ -43,4 +43,8 @@ class MessageTest < ActiveSupport::TestCase
     notif.reload
     assert_not notif.seen
   end
+
+  test "broadcast" do
+    # Not sure how to test this
+  end
 end
