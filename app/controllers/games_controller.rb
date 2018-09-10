@@ -1,4 +1,7 @@
 class GamesController < ApplicationController
+  before_action :check_player, only: [:show, :update]
+  before_action :check_host, only: [:show, :update]
+
   def create
     game = Game.create
     host = Player.create(game: game, host: true)

@@ -7,8 +7,19 @@
 one:
   player: one
   conversation: one
+  seen: true
 
 two:
   player: two
   conversation: one
+  seen: true
 
+three:
+  player: player_1
+  conversation: two
+  seen: true
+
+four: 
+  player: player_2
+  conversation: two
+  seen: true

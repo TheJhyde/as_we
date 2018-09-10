@@ -1,47 +1,28 @@
 Big Picture:
--Login Page
--Leaving System
-
-
+-Write more tests
+  -Especially for this security stuff, leaving
 -How to test channels? 
 -Firefox seems finicky with channels
   -I can build this with ajax calls. But I'd have to 1. do it and 2. detect the failure to connect to the channel and switch over to ajax styles
 
-When I closed the brower on mobile, I lost all the cookies, everything. That's terrible
-  -Ideally I could fix this
-  -Failing that, I should bite the bullet and make the login page
-
-Root page
-  -What if someone loses their session or cookies somehow? There should be a login method by name
-
 Host Page 
   -Game timer
   -List of news updates, posted and to come
+  -Mark on the host page with who's left, in javascript through host channels
 
-Player Page
-  -Like... any security
-    -Non-hosts shouldn't be able to see the game
-    -players should only be able to see their own player page
-    -Players shouldn't be able to see conversations they're not a part of
-  -When a player leaves
-    -Sending a message to their conversation partners - "#{number} has disconnected"
-    -Giving the player themselves their fate
-    -Preventing a player who's left from sending any messages
-      -(You can send messages to players who've left. That's poigent, yo)
+Edit Player Page
+  -I'd like to cache the options, so they persist for each player at least ~five minutes. Or even like 30 seconds. Discouraging reloading until you get what you want
 
 Conversation Page
-  -Add "DISCONNECTED" or "LEFT" message to the conversation page when the game is over.
-    -Roll this into the leaving system
   -Is HRN not receiving it's own messages in the chat when they're sent?
   -Not sure if notification button is updating correctly
     -Sender of the message gets notifications sometimes?
+  -Players shouldn't be able to see conversations they're not a part of
+    -But, maybe hosts should be able too?
 
 TO ASK ALEX
--I'm giving each of the players a five number code - that good? Should it be more like a phone number, 10 digits?
--Does the host need or want the ability to read everyone's messages?
--Should I restrict the host's ability to talk to people without getting their numbers?
--Do we want to save the messages for later review?
-
+-Should there be some kind of limit on how players leaving? A gap of time between attempts?
+-Should disconnected players be able to see conversations?
 
 
 
@@ -52,4 +33,6 @@ TO DO BUT NOT RIGHT NOW, THIS STUFF DOESN'T MATTER RIGHT NOW
 -I think I want timestamps on messages
 -When game starts, a "Connected!" message that disappears after a little bit
 -"Return to Front Page" link when game's over on game, player maybe?
--Order of conversations - I'd like HRN to be on top all the time.x`
+-Order of conversations - I'd like HRN to be on top all the time
+-Should there be some additional message at the end of the game?
+  -Should players forced to leave by the end of the game get too choose left options? Probably

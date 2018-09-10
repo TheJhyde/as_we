@@ -21,10 +21,16 @@ two:
   left: false
   game: one
 
-<% 5.times do |i| %>
-player_<%= i %>:
+<% 4.times do |i| %>
+player_<%= i + 1 %>:
   number: 1234<%= i %>
   host: false
   left: false
   game: full_game
 <% end %>
+
+player_0:
+  number: 12340
+  host: true
+  left: false
+  game: full_game

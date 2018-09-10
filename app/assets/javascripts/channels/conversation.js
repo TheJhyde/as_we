@@ -67,7 +67,7 @@ function add_chat_message(chat, data, player_id){
   // Specifically, links to other chats
   const extra = JSON.parse(data.extra);
   var message = data.message;
-  if(extra.links){
+  if(!extra.system_message && extra.links){
     extra.links.forEach((link) => {
       message = message.replace(
         link.number,
@@ -78,7 +78,10 @@ function add_chat_message(chat, data, player_id){
 
   // the list of classes this message will have
   var classes = 'message'
-  if(data.player == player_id){
+  if(extra.system_message){
+    classes += " system"
+  }
+  else if(data.player == player_id){
     classes += " from";
   }else{
     classes += " to";

@@ -2,12 +2,17 @@
 
 <div id="player-banner">
   <div>
-    <%= link_to @from.host ? game_path(@from.game) : player_path(@from) do %>
-      <%= image_tag "back.png", id: "nav", class: @from.any_unread? ? "notification" : "" %>
-    <% end %>
+    <div>
+      <%= link_to @from.host ? game_path(@from.game) : player_path(@from) do %>
+        <%= image_tag "back.png", id: "nav", class: @from.any_unread? ? "notification" : "" %>
+      <% end %>
+    </div>
+    <div>
+      <%= @conversation.players.pluck(:number).join(", ") %><br>
+    </div>
   </div>
-  <div>
-    <%= @conversation.players.pluck(:number).join(", ") %><br>
+  <div id="right">
+    <%= link_to "LEAVE", edit_player_path(@from) %>
   </div>
 </div>
 

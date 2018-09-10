@@ -3,15 +3,10 @@
 @media screen and (min-width: 1200px){
   #player-banner{
     font-size: 20px;
+
     #nav{
       width: 20px;
     }
-
-    a{
-      height: 30px;
-      width: 30px;
-    }
-
   }
 
   #game-state{
@@ -25,6 +20,10 @@
     font-size: 20px;
     padding: 5px;
   }
+
+  .edit-line{
+    padding: 2px 0;
+  }
 }
 
 // Small
@@ -33,11 +32,6 @@
     font-size: 7vw;
     #nav{
       width: 7vw;
-    }
-
-    a{
-      width: 7vw;
-      height: 7vw;
     }
   }
 
@@ -51,6 +45,15 @@
   .conversation{
     font-size: 6vw;
     padding: 20px;
+  }
+
+  input[type=radio]{
+    height: 4vw;
+    width: 4vw;
+  }
+
+  .edit-line{
+    padding: 1vw 0;
   }
 }
 
@@ -83,8 +86,10 @@ body{
 #player-banner{
   border-bottom: 1px solid white;
   color: white;
+  display: flex;
+  justify-content: space-between;
   padding: 5px;
-  width: 100%;
+  width: calc(100% - 10px);
 
   a{
     display: inline-block;
@@ -95,8 +100,12 @@ body{
     border-radius: 3px;  
   }
 
+  #right{
+    // margin-right: 20px;
+  }
+
   div{
-    display: inline-block
+    display: inline-block;
   }
 
   .number{

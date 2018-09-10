@@ -1,23 +1,43 @@
 <% content_for :page_classes, "in-game" %>
 
-<div id="player-banner">
-  <div id="nav"></div>
-  <div>
-    My Number: <span class="number"><%= @player.number %></span>
-  </div>
-</div>
 
-<div id="game-state">
-  <% if @player.game.state == "end" %>
-    <h3>DISCONNECTED</h3>
-    The game is now over
-  <% elsif @player.game.state == "before" %>
-    <h3>Connecting<span class="one">.</span><span class="two">.</span><span class="three">.</span></h3>
-    The game will begin shortly.
+<div id="player-banner">
+  <div id="left">
+    <div id="nav"></div>
+    <div>
+      My Number: <span class="number"><%= @player.number %></span>
+    </div>
+  </div>
+  
+  <% if !@player.left %>
+    <div id="right">
+      <%= link_to "LEAVE", edit_player_path(@player) %>
+    </div>
   <% end %>
 </div>
-<%= render partial: "conversation_list", locals: {player: @player, conversations: @player.conversations, use_from: false} %>
 
-<script>
-  playerPage(<%= @player.id %>);
-</script>
+<% if !@player.left %>
+  <div id="game-state">
+    <% if @player.game.state == "end" %>
+      <h3>DISCONNECTED</h3>
+      The game is now over
+    <% elsif @player.game.state == "before" %>
+      <h3>Connecting<span class="one">.</span><span class="two">.</span><span class="three">.</span></h3>
+      The game will begin shortly.
+    <% end %>
+  </div>
+  <%= render partial: "conversation_list", locals: {player: @player, conversations: @player.conversations, use_from: false} %>
+
+  <script>
+    playerPage(<%= @player.id %>);
+  </script>
+<% else %>
+  <div id="game-state">
+    <h3>DISCONNECTED</h3>
+    <div>You may come out now</div>
+  </div>
+  <div id="main">
+    <h3>FATE: <%= @player.fate %></h3>
+    <h3>CHANGE: <%= @player.change %></h3>
+  </div>
+<% end %>

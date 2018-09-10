@@ -2,30 +2,43 @@ class Message < ApplicationRecord
   belongs_to :conversation
   belongs_to :player
 
+  validate :check_player
   before_save :mark_number
   after_create :mark_unread
   after_create :broadcast
+
+  attr_accessor :no_links
 
   def extra_info
     JSON.parse(self.extra)
   end
 
   private
-    def mark_number
-      numbers = self.contents.scan(/\d{5}/)
-      links = numbers.uniq.map do |number|
-        # If this message is from HRN, we trust it to only give us players from the correct game
-        # HRN is an upstanding resistance network, wouldn't lead us astray
-        target = self.player.number == "HRN" ? Player.find_by(number: number) : Player.find_by(number: number, game: self.player.game)
-        if target
-          {number: number, id: target.id}
-        else
-          nil
-        end
+    def check_player
+      if self.player.left?
+        errors.add(:player, "must still be connected")
       end
+    end
 
-      if links.length > 0
-        self.extra = {links: links.find_all {|n| n}}.to_json
+    def mark_number
+      unless no_links
+        # Scanning for 5 digit long numbers, I believe
+        numbers = self.contents.scan(/\d{5}/)
+        links = numbers.uniq.map do |number|
+          # If this message is from HRN, we trust it to only give us players from the correct game
+          # HRN is an upstanding resistance network, wouldn't lead us astray
+          target = self.player.number == "HRN" ? Player.find_by(number: number) : Player.find_by(number: number, game: self.player.game)
+          if target
+            {number: number, id: target.id}
+          else
+            nil
+          end
+        end
+        links.compact!
+
+        if links.length > 0
+          self.extra = JSON.parse(self.extra).merge({links: links.find_all {|n| n}}).to_json
+        end
       end
     end
 

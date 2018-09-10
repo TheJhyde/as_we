@@ -1,0 +1,37 @@
+<div id="player-banner">
+  <div id="left">
+    <div>
+      <%= link_to @player.host ? game_path(@player.game) : player_path(@player) do %>
+        <%= image_tag "back.png", id: "nav", class: @player.any_unread? ? "notification" : "" %>
+      <% end %>
+    </div>
+    <div>
+      My Number: <span class="number"><%= @player.number %></span>
+    </div>
+  </div>
+  <div id="right">
+    <%= link_to "LEAVE", edit_player_path(@player) %>
+  </div>
+</div>
+
+<div id="main">
+  <div>
+    If you leave now, you must selected one of these fates to suffer and one of these changes to have happen. If you do not wish too, <%= link_to "you must remain inside.", player_path(@player)%>
+  </div>
+  <br>
+  <%= form_for @player do |f| %>
+    <%= f.hidden_field :left, value: true %>
+    <% @outcomes[:fate].each_with_index do |fate, index| %>
+      <div class="edit-line">
+        <%= f.radio_button :fate, fate, checked: index == 0 %><%= f.label :fate, fate, value: fate %>
+      </div>
+    <% end %>
+    <br>
+    <% @outcomes[:change].each_with_index do |change, index| %>
+      <div class="edit-line">
+        <%= f.radio_button :change, change, checked: index == 0 %><%= f.label :change, change, value: change %>
+      </div>
+    <% end %>
+    <%= f.submit "Leave" %>
+  <% end %>
+</div>

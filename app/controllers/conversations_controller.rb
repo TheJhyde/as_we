@@ -1,4 +1,6 @@
 class ConversationsController < ApplicationController
+  # before_action :check_participants
+
   def show
     @conversation = Conversation.find(params[:id])
     @from = Player.find(params[:from] || cookies[:current_player])
@@ -23,4 +25,10 @@ class ConversationsController < ApplicationController
       # display the errors somehow
     end
   end
+
+  # private
+
+  #   def check_participants
+      
+  #   end
 end

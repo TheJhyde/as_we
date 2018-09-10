@@ -32,6 +32,12 @@ class Player < ApplicationRecord
     notifications.any?{|n| !n.seen?}
   end
 
+  def leave
+    self.conversations.each do |conversation|
+      Message.create(contents: "- #{self.number} has disconnected -", conversation: conversation, player: self, extra: {system_message: true}.to_json, no_links: true)
+    end
+  end
+
   private
     def set_number
       unless self.number

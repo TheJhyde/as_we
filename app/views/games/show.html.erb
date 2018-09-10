@@ -20,7 +20,7 @@
         <% if player.host? %>
           <li><%= player.number %> (HOST)</li>
         <% else %>
-          <li><%= link_to player.number, conversations_path(players: [player.id, @host.id]), method: :post %></li>
+          <li><%= link_to player.number, conversations_path(players: [player.id, @host.id]), method: :post %> <% if player.left? %>(LEFT)<% end %> </li>
         <% end %>
       <% end %>
       <% if @game.players.count == 5 && @game.state == "before" %>

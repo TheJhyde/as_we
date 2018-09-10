@@ -13,7 +13,7 @@ class Game < ApplicationRecord
   end
 
   def start
-    update(state: "running")
+    update(state: "running", start_time: DateTime.now)
 
     self.players.each do |player|
       player.broadcast_to({type: "state", state: "running"})
@@ -67,11 +67,51 @@ class Game < ApplicationRecord
 
   def end
     update(state: "end")
-    self.players.update_all(left: true)
 
     self.players.each do |player|
+      player.leave unless player.left?
       player.broadcast_to({type: "state", state: "end"})
     end
+
+    self.players.update_all(left: true)
+  end
+
+  def outcomes
+    # MAGIC NUMBER - how long you have to stay inside for the game to not just kills you
+    if start_time > 17.minutes.ago
+      {fate: ["You were spotted by an alien. They killed you. You are dead. You will no longer be able to play this game."], change: ["NA"]}
+    else
+      players_left = players.where(left: true).count
+      if players_left == 0
+        {fate: fates.sample(1), change: changes.sample(3)}
+      elsif players_left < 3
+        {fate: fates.sample(2), change: changes.sample(2)}
+      else
+        {fate: fates.sample(3), change: changes.sample(1)}
+      end
+    end
+  end
+
+  def fates
+    fates = [
+        "You are killed by an alien militia in less than a week.", 
+        "You see so many of your fellow humans suffer horrible fates that you decide to take your own life within a month.",
+        "You surrender or are captured by the alien government. They chemically sterilize you, and you live out your days as a servant in alien society.", 
+        "You spend your days on the run. you have no home and no source of clean water or food. You might survive, barely.", 
+        "You find a safe place to live with a human companion. You might be able to produce a single child.", 
+        "You publicly join the resistance and are assassinated. Humanity is inspired by your sacrifice. You are remembered."
+      ] - self.players.where(left: true).pluck(:fate)
+  end
+
+  def changes
+    changes = [
+      "In less than a year, a human territory is established.",
+      "Laws are passed banning maltreatment of humans.",
+      "Enough humans survive so that the species will not die out.",
+      "Alien entertainment portrays a human character. It is inaccurate.",
+      "A human learns alien law. they are allowed to practice as lawyer.",
+      "Humans are allowed to reproduce."
+    ] - self.players.where(left: true).pluck(:change)
   end
 
   private
