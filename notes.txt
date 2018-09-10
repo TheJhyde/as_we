@@ -1,6 +1,5 @@
 Big Picture:
--Write more tests
-  -Especially for this security stuff, leaving
+-Write controller tests
 -How to test channels? 
 -Firefox seems finicky with channels
   -I can build this with ajax calls. But I'd have to 1. do it and 2. detect the failure to connect to the channel and switch over to ajax styles

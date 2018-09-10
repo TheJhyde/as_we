@@ -39,4 +39,16 @@ class PlayerTest < ActiveSupport::TestCase
   test "find_conversation" do
     assert_equal conversations(:one), @player.find_conversation(players(:two))
   end
+
+  test "any_unread?" do
+    assert_not @player.any_unread?
+    @player.notifications.first.update(seen: false)
+    assert @player.any_unread?
+  end
+
+  test "leave" do
+    assert_difference "Message.count" do
+      @player.leave
+    end
+  end
 end
