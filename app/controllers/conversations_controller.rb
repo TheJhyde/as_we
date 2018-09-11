@@ -1,4 +1,5 @@
 class ConversationsController < ApplicationController
+  before_action :check_player, only: [:create]
   # before_action :check_participants
 
   def show

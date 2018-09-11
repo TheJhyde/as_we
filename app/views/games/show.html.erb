@@ -3,7 +3,10 @@
 <div id="game-page">
   <div id="game-info">
     <strong>Game Code</strong>: <%= @game.code %><br>
-    <strong>Game State</strong>: <%= @game.state %>
+    <strong>Game State</strong>: <%= @game.state %><br>
+    <% if @game.state == "running" %>
+      <strong>Time Elapsed:</strong> <span id="clock">00:00:00</span>
+    <% end %>
     <% if @game.state != "end" %>
       <%= form_for @game do |f| %>
         <%= f.hidden_field :state, value: @game.state == "before" ? "running" : "end" %>
@@ -41,4 +44,7 @@
   playerPage(<%= @host.id %>);
   playerPage(<%= @hrn.id %>);
   hostChannel(<%= @game.id %>, null);
+  <% if @game.state == "running" %>
+    clock(<%= @game.start_time.utc.to_i * 1000 %>);
+  <% end %>
 </script>

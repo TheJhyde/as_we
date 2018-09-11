@@ -1,14 +1,10 @@
 Big Picture:
--Write controller tests
-  -Conversation
-  -Game
-  -Players
+-Write conversation tests (and go clean up the conversation controller, it's a little messy)
 -How to test channels? 
 -Firefox seems finicky with channels
   -I can build this with ajax calls. But I'd have to 1. do it and 2. detect the failure to connect to the channel and switch over to ajax styles
 
 Host Page 
-  -Game timer
   -List of news updates, posted and to come
   -Mark on the host page with who's left, in javascript through host channels
 
