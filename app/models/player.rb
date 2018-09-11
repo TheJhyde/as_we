@@ -36,6 +36,8 @@ class Player < ApplicationRecord
     self.conversations.each do |conversation|
       Message.create(contents: "- #{self.number} has disconnected -", conversation: conversation, player: self, extra: {system_message: true}.to_json, no_links: true)
     end
+
+    ActionCable.server.broadcast("host_channel_#{game.id}", {type: "player_leave", id: id})
   end
 
   private
@@ -56,7 +58,7 @@ class Player < ApplicationRecord
 
     def broadcast_creation
       if game
-        ActionCable.server.broadcast("host_channel_#{game.id}", {type: "new_player", number: number, count: game.players.count})
+        ActionCable.server.broadcast("host_channel_#{game.id}", {type: "new_player", number: number, count: game.players.count, id: id})
       end
     end
 

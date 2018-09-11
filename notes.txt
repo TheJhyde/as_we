@@ -1,27 +1,27 @@
 Big Picture:
--Write conversation tests (and go clean up the conversation controller, it's a little messy)
 -How to test channels? 
 -Firefox seems finicky with channels
   -I can build this with ajax calls. But I'd have to 1. do it and 2. detect the failure to connect to the channel and switch over to ajax styles
+-Do another big test of the notification systems online, running through a whole game
 
 Host Page 
   -List of news updates, posted and to come
-  -Mark on the host page with who's left, in javascript through host channels
+    -For this I'd need to get a list of activejobs, somehow. A real mystery
 
 Edit Player Page
   -I'd like to cache the options, so they persist for each player at least ~five minutes. Or even like 30 seconds. Discouraging reloading until you get what you want
 
 Conversation Page
-  -Is HRN not receiving it's own messages in the chat when they're sent?
-  -Not sure if notification button is updating correctly
-    -Sender of the message gets notifications sometimes?
   -Players shouldn't be able to see conversations they're not a part of
     -But, maybe hosts should be able too?
+  -I need to a good way to get from conversations to games, since that's a piece of information I need sometimes
+    -In particular, for marking conversations in games that are over with "SYSTEM OFFLINE"
+    -Another tricky HRN problem!
 
 TO ASK ALEX
 -Should there be some kind of limit on how players leaving? A gap of time between attempts?
 -Should disconnected players be able to see conversations?
-
+-Should players forced to leave by the end of the game get too choose left options? Probably
 
 
 
@@ -32,5 +32,3 @@ TO DO BUT NOT RIGHT NOW, THIS STUFF DOESN'T MATTER RIGHT NOW
 -When game starts, a "Connected!" message that disappears after a little bit
 -"Return to Front Page" link when game's over on game, player maybe?
 -Order of conversations - I'd like HRN to be on top all the time
--Should there be some additional message at the end of the game?
-  -Should players forced to leave by the end of the game get too choose left options? Probably

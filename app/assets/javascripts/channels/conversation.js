@@ -42,13 +42,13 @@ function conversationPage(player_id, conversation_id){
             }
             break;
           case "state":
-            // Haven't set anything up to happen on state changes on the conversation pages
-
-            // if(data.state == "end"){
-            //   $("#game-state").html("");
-            // }else{
-            //   $("#game-state").html("<h3>DISCONNECTED</h3>The game is now over.")
-            // }
+            if(data.state == "end"){
+              chat.append(
+                "<div class='message system'>" +
+                  "<div class='message-contents'>- SYSTEM OFFLINE -</div>" +
+                "</div>"
+              );
+            }
             break;
           default:
             console.log("Received message of type", data.type)

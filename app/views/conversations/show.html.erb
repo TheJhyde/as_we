@@ -20,6 +20,13 @@
   <% @conversation.messages.each do |msg| %>
     <%= render partial: "messages/show", locals: {message: msg, current_player: @from} %>
   <% end %>
+  <% if @conversation.players.last.game.state == "end" %>
+    <div class='message system'>
+      <div class='message-contents'>
+        - SYSTEM OFFLINE -
+      </div>
+    </div>
+  <% end %>
 </div>
 
 <div id="submit-form">

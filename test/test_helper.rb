@@ -6,8 +6,8 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  def player_login
-    player = players(:player_1)
+  def player_login(p = :player_1)
+    player = players(p)
     post players_login_path(id: player.id)
     player
   end

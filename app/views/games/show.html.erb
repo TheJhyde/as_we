@@ -15,6 +15,7 @@
     <% end %>
   </div>
   <br>
+
   <div>
     <h3>Player List</h3>
     Click on a player to start a conversation with them.
@@ -23,7 +24,7 @@
         <% if player.host? %>
           <li><%= player.number %> (HOST)</li>
         <% else %>
-          <li><%= link_to player.number, conversations_path(players: [player.id, @host.id]), method: :post %> <% if player.left? %>(LEFT)<% end %> </li>
+          <li id="player-list-<%= player.id %>"><%= link_to player.number, conversations_path(players: [player.id, @host.id]), method: :post %> <% if player.left? %>(LEFT)<% end %> </li>
         <% end %>
       <% end %>
       <% if @game.players.count == 5 && @game.state == "before" %>
