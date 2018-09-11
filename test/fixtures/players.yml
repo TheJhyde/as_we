@@ -29,7 +29,7 @@ player_<%= i + 1 %>:
   game: full_game
 <% end %>
 
-player_0:
+player_host:
   number: 12340
   host: true
   left: false

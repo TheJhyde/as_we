@@ -30,8 +30,6 @@ class PlayersController < ApplicationController
     player = Player.find(params[:id])
     player.update(player_params)
     if player_params[:left] && player_params[:left] == "true"
-      p "-" * 45
-      p "PLAYER IS LEAVING"
       player.leave
     end
     redirect_to player

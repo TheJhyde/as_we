@@ -7,10 +7,13 @@
 one: 
   code: 12345
   state: before
+  start_time: <%= DateTime.now %>
 two:
   code: 67890
   state: before
+  start_time: <%= DateTime.now %>
 
 full_game:
   code: abcdef
   state: before
+  start_time: <%= DateTime.now %>

@@ -6,5 +6,15 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  def player_login
+    player = players(:player_1)
+    post players_login_path(id: player.id)
+    player
+  end
+
+  def host_login
+    player = players(:player_host)
+    post players_login_path(id: player.id)
+    player
+  end
 end

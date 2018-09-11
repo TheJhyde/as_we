@@ -20,14 +20,14 @@ class ApplicationController < ActionController::Base
   end
 
   def check_player
-    redirect_to root_path and return unless current_player
+    redirect_to root_path unless current_player
   end
 
   def match_player
-    redirect_to root_path and return unless cookies[:current_player] == params[:id]
+    redirect_to current_player unless cookies[:current_player] == params[:id]
   end
 
   def check_host
-    redirect_to current_player and return unless current_player.host?
+    redirect_to current_player unless current_player.host?
   end
 end
