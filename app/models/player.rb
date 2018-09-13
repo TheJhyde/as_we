@@ -33,8 +33,11 @@ class Player < ApplicationRecord
   end
 
   def leave
+    p "We're leaving now"
     self.conversations.each do |conversation|
-      Message.create(contents: "- #{self.number} has disconnected -", conversation: conversation, player: self, extra: {system_message: true}.to_json, no_links: true)
+      p "sending leaving to conversation #{conversation.id}"
+      msg = Message.create(contents: "- #{self.number} has disconnected -", conversation: conversation, player: self, extra: {system_message: true}.to_json, no_links: true)
+      p msg.errors
     end
 
     ActionCable.server.broadcast("host_channel_#{game.id}", {type: "player_leave", id: id})

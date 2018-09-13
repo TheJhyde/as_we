@@ -1,17 +1,26 @@
 Big Picture:
--How to test channels? 
+-start_time isn't being set properly by the start
+-fate and change also aren't being set correctly. Problem with the migration?
+-Weird inconsistency with text size
+  On the phone, if there are any messages longer than 10 characters, all of the messages will appear in a larger font
+  Triggers the effect: '12345678901', '12345 7890' 'the the the the'
+  Doesn't: 'it's very weird', 'the the the'
+  See if I can replicate it locally, ideally in the browser
+-If the chat box is shorter than it's maximum size, when the keyboard comes up you can't see the bottom of the chat window
+-back button problem
+
 -Firefox seems finicky with channels
   -I can build this with ajax calls. But I'd have to 1. do it and 2. detect the failure to connect to the channel and switch over to ajax styles
--Do another big test of the notification systems online, running through a whole game
--Channel tests?
--Job tests?
--There's all this javascript and I'd love to be able to test it somehow. That's what I'm most concerned about breaking somehow
 -Big styling overhaul
 
 Host Page 
   -List of news updates, posted and to come
     -For this I'd need to get a list of activejobs, somehow. A real mystery
     -Maybe not necessary?
+
+-It's nice to have something to signal when HRN sends message to people
+  -But the unread notification shouldn't be used to signal that - the host needs know if a player is trying to contact them through HRN
+  -When the javascript detects a HRN to Host message, that shouldn't be marked as "unread"
 
 TO ASK ALEX
 -Should there be some kind of limit on how players leaving? A gap of time between attempts?
@@ -21,16 +30,18 @@ TO ASK ALEX
 
 
 TO DO BUT NOT RIGHT NOW, THIS STUFF DOESN'T MATTER RIGHT NOW
+-Maybe make the cut-off for the mobile styling a little smaller
 -The link text is different in from messages vs too messages, which bothers me. It should be consistent, lest the players read into it
 -There's a lot of empty space at the bottom of the conversation screen. should probably do something about that
 -I think I want timestamps on messages
 -When game starts, a "Connected!" message that disappears after a little bit
 -"Return to Front Page" link when game's over on game, player maybe?
--Order of conversations - I'd like HRN to be on top all the time
+-Order of conversations - I'd like HRN to be on top all the time. Or at the very least, for it to be consistent
 
 DOING IT PROPERLY
--Optimizing the database requests
 -Tests for channels
+-Javascript testing
+-Optimizing the database requests
 -Test for jobs
 -Upping the Accessibility
 -Test performance generally

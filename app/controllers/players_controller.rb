@@ -28,10 +28,12 @@ class PlayersController < ApplicationController
 
   def update
     player = Player.find(params[:id])
-    player.update(player_params)
-    if player_params[:left] && player_params[:left] == "true"
+    if player_params[:left] && (player_params[:left] == "true" || player_params[:left] == true)
+      p "0" * 127
+      p "Leaving?"
       player.leave
     end
+    player.update(player_params)
     redirect_to player
   end
 

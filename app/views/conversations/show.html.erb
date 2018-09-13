@@ -31,7 +31,7 @@
 
 <div id="submit-form">
   <%= form_with url: '#', html: {id: 'new-message'} do |f| %>
-    <%= f.text_field :contents, id: "message-body", rows: 2 %>
+    <%= f.text_field :contents, id: "message-body", rows: 2, autocomplete: "off" %>
     <%= f.submit "SEND", id: "message-submit" %>
   <% end %>
 </div>
