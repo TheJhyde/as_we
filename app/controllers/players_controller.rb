@@ -23,7 +23,7 @@ class PlayersController < ApplicationController
 
   def edit
     @player = Player.find(params[:id])
-    @outcomes = @player.game.outcomes
+    @outcomes = @player.game.outcomes("#{@player.cache_key}/outcomes")
   end
 
   def update

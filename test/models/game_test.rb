@@ -42,27 +42,27 @@ class GameTest < ActiveSupport::TestCase
 
   test "outcomes" do
     @game.update(start_time: DateTime.now)
-    outcomes = @game.outcomes
+    outcomes = @game.outcomes("test_key_1")
     assert_equal 1, outcomes[:fate].length
     assert_equal 1, outcomes[:change].length
 
     @game.update(start_time: 18.minutes.ago)
-    outcomes = @game.outcomes
+    outcomes = @game.outcomes("test_key_2")
     assert_equal 1, outcomes[:fate].length
     assert_equal 3, outcomes[:change].length
 
     players(:player_1).update(left: true)
-    outcomes = @game.outcomes
+    outcomes = @game.outcomes("test_key_3")
     assert_equal 2, outcomes[:fate].length
     assert_equal 2, outcomes[:change].length
 
     players(:player_2).update(left: true)
-    outcomes = @game.outcomes
+    outcomes = @game.outcomes("test_key_4")
     assert_equal 2, outcomes[:fate].length
     assert_equal 2, outcomes[:change].length
 
     players(:player_3).update(left: true)
-    outcomes = @game.outcomes
+    outcomes = @game.outcomes("test_key_5 ")
     assert_equal 3, outcomes[:fate].length
     assert_equal 1, outcomes[:change].length
   end

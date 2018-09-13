@@ -76,18 +76,20 @@ class Game < ApplicationRecord
     self.players.update_all(left: true)
   end
 
-  def outcomes
+  def outcomes(key)
     # MAGIC NUMBER - how long you have to stay inside for the game to not just kills you
-    if start_time > 17.minutes.ago
-      {fate: ["You were spotted by an alien. They killed you. You are dead. You will no longer be able to play this game."], change: ["NA"]}
-    else
-      players_left = players.where(left: true).count
-      if players_left == 0
-        {fate: fates.sample(1), change: changes.sample(3)}
-      elsif players_left < 3
-        {fate: fates.sample(2), change: changes.sample(2)}
+    Rails.cache.fetch(key, expires_in: 1.minute) do
+      if start_time > 17.minutes.ago
+        {fate: ["You were spotted by an alien. They killed you. You are dead. You will no longer be able to play this game."], change: ["NA"]}
       else
-        {fate: fates.sample(3), change: changes.sample(1)}
+        players_left = players.where(left: true).count
+        if players_left == 0
+          {fate: fates.sample(1), change: changes.sample(3)}
+        elsif players_left < 3
+          {fate: fates.sample(2), change: changes.sample(2)}
+        else
+          {fate: fates.sample(3), change: changes.sample(1)}
+        end
       end
     end
   end

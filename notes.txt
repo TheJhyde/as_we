@@ -3,20 +3,15 @@ Big Picture:
 -Firefox seems finicky with channels
   -I can build this with ajax calls. But I'd have to 1. do it and 2. detect the failure to connect to the channel and switch over to ajax styles
 -Do another big test of the notification systems online, running through a whole game
+-Channel tests?
+-Job tests?
+-There's all this javascript and I'd love to be able to test it somehow. That's what I'm most concerned about breaking somehow
+-Big styling overhaul
 
 Host Page 
   -List of news updates, posted and to come
     -For this I'd need to get a list of activejobs, somehow. A real mystery
-
-Edit Player Page
-  -I'd like to cache the options, so they persist for each player at least ~five minutes. Or even like 30 seconds. Discouraging reloading until you get what you want
-
-Conversation Page
-  -Players shouldn't be able to see conversations they're not a part of
-    -But, maybe hosts should be able too?
-  -I need to a good way to get from conversations to games, since that's a piece of information I need sometimes
-    -In particular, for marking conversations in games that are over with "SYSTEM OFFLINE"
-    -Another tricky HRN problem!
+    -Maybe not necessary?
 
 TO ASK ALEX
 -Should there be some kind of limit on how players leaving? A gap of time between attempts?
@@ -32,3 +27,11 @@ TO DO BUT NOT RIGHT NOW, THIS STUFF DOESN'T MATTER RIGHT NOW
 -When game starts, a "Connected!" message that disappears after a little bit
 -"Return to Front Page" link when game's over on game, player maybe?
 -Order of conversations - I'd like HRN to be on top all the time
+
+DOING IT PROPERLY
+-Optimizing the database requests
+-Tests for channels
+-Test for jobs
+-Upping the Accessibility
+-Test performance generally
+-What kind of backend am I using to run the jobs?
