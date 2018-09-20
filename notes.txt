@@ -1,32 +1,23 @@
 Big Picture:
--start_time isn't being set properly by the start
--fate and change also aren't being set correctly. Problem with the migration?
--Weird inconsistency with text size
-  On the phone, if there are any messages longer than 10 characters, all of the messages will appear in a larger font
-  Triggers the effect: '12345678901', '12345 7890' 'the the the the'
-  Doesn't: 'it's very weird', 'the the the'
-  See if I can replicate it locally, ideally in the browser
--If the chat box is shorter than it's maximum size, when the keyboard comes up you can't see the bottom of the chat window
--back button problem
-
--Firefox seems finicky with channels
-  -I can build this with ajax calls. But I'd have to 1. do it and 2. detect the failure to connect to the channel and switch over to ajax styles
+-Back button problem
 -Big styling overhaul
 
 Host Page 
   -List of news updates, posted and to come
-    -For this I'd need to get a list of activejobs, somehow. A real mystery
-    -Maybe not necessary?
+    -Probably best to revise how updates are done entirely in that case, put them in the database in some fashion
+    -And then the host could potentially update them before the game starts! That'd be neato.
 
 -It's nice to have something to signal when HRN sends message to people
   -But the unread notification shouldn't be used to signal that - the host needs know if a player is trying to contact them through HRN
   -When the javascript detects a HRN to Host message, that shouldn't be marked as "unread"
 
-TO ASK ALEX
--Should there be some kind of limit on how players leaving? A gap of time between attempts?
--Should disconnected players be able to see conversations?
--Should players forced to leave by the end of the game get too choose left options? Probably
+A "credits" page which lists what happened to each player
 
+TO ASK ALEX
+-Should disconnected players be able to see conversations?
+  -I think: they shouldn't, but they should be able too once the game is over
+-Should players forced to leave at the end of the game and get too choose left options
+  -Yes, I think they should
 
 
 TO DO BUT NOT RIGHT NOW, THIS STUFF DOESN'T MATTER RIGHT NOW
@@ -37,6 +28,12 @@ TO DO BUT NOT RIGHT NOW, THIS STUFF DOESN'T MATTER RIGHT NOW
 -When game starts, a "Connected!" message that disappears after a little bit
 -"Return to Front Page" link when game's over on game, player maybe?
 -Order of conversations - I'd like HRN to be on top all the time. Or at the very least, for it to be consistent
+-Weird inconsistency with text size
+  On the phone, if there are any messages longer than 10 characters, all of the messages will appear in a larger font
+  Triggers the effect: '12345678901', '12345 7890' 'the the the the'
+  Doesn't: 'it's very weird', 'the the the'
+  See if I can replicate it locally, ideally in the browser
+-If the chat box is shorter than it's maximum size, when the keyboard comes up you can't see the bottom of the chat window
 
 DOING IT PROPERLY
 -Tests for channels
@@ -46,3 +43,6 @@ DOING IT PROPERLY
 -Upping the Accessibility
 -Test performance generally
 -What kind of backend am I using to run the jobs?
+-Firefox seems finicky with channels
+  -I can build this with ajax calls. But I'd have to 1. do it and 2. detect the failure to connect to the channel and switch over to ajax styles
+-Convert to vanilla javascript
