@@ -27,6 +27,9 @@ gem 'redis', '~> 4.0'
 
 gem 'jquery-rails'
 
+gem 'rails-perftest', git: "https://github.com/rails/rails-perftest"
+gem 'ruby-prof', '0.15.9'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -48,6 +51,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  gem 'rubocop', '~> 0.53', require: false
+  gem 'rubocop-rails_config', require: false
 end
 
 group :test do

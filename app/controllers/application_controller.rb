@@ -1,3 +1,5 @@
+#frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   def current_player
     return Player.find_by(id: cookies[:current_player]) if cookies[:current_player]
@@ -10,12 +12,12 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_main
-    if current_player && current_player.game && !current_player.left
-      if current_player.host
-        redirect_to game_path(current_player.game)
-      else
-        redirect_to player_path(current_player)
-      end
+    return unless current_player && current_player.game && !current_player.left
+    
+    if current_player.host
+      redirect_to game_path(current_player.game)
+    else
+      redirect_to player_path(current_player)
     end
   end
 

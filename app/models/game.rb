@@ -95,7 +95,7 @@ class Game < ApplicationRecord
   end
 
   def fates
-    fates = [
+    [
         "You are killed by an alien militia in less than a week.", 
         "You see so many of your fellow humans suffer horrible fates that you decide to take your own life within a month.",
         "You surrender or are captured by the alien government. They chemically sterilize you, and you live out your days as a servant in alien society.", 
@@ -106,7 +106,7 @@ class Game < ApplicationRecord
   end
 
   def changes
-    changes = [
+    [
       "In less than a year, a human territory is established.",
       "Laws are passed banning maltreatment of humans.",
       "Enough humans survive so that the species will not die out.",

@@ -1,10 +1,12 @@
+#frozen_string_literal: true
+
 class ConversationsController < ApplicationController
   before_action :check_player
 
   def show
     @conversation = Conversation.find(params[:id])
 
-    redirect_to current_player and return unless (@conversation.players.exists?(id: cookies[:current_player]) || current_player.host?)
+    redirect_to current_player && return unless @conversation.players.exists?(id: cookies[:current_player]) || current_player.host?
 
     @from = Player.find(params[:from] || cookies[:current_player])
     @conversation.notifications.find_by(player: @from).update(seen: true)

@@ -11,12 +11,11 @@ class GamesController < ApplicationController
   end
 
   def show
-    # Should probably do some sort of preloading here, but, eh
-    @game = Game.find(params[:id])
+    @game = Game.includes(:players).find(params[:id])
     @players = @game.players
 
-    @host = @game.players.find_by(host: true)
-    @hrn = Player.find_or_create_by(number: "HRN")
+    @host = @game.players.includes(:conversations).find_by(host: true)
+    @hrn = Player.includes(:conversations).find_or_create_by(number: "HRN")
   end
 
   def update
