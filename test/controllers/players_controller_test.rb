@@ -1,9 +1,11 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class PlayersControllerTest < ActionDispatch::IntegrationTest
   test "create" do
-    assert_difference 'Player.count' do
-      post players_path(player: {code: games(:one).code})
+    assert_difference "Player.count" do
+      post players_path(player: { code: games(:one).code })
       assert_response :redirect
     end
   end
@@ -47,12 +49,12 @@ class PlayersControllerTest < ActionDispatch::IntegrationTest
   test "update" do
     player = players(:player_1)
 
-    patch player_path(player), params: {player: {left: "true", fate: "FATE TEST", change: "CHANGE TEST"}}
+    patch player_path(player), params: { player: { left: "true", fate: "FATE TEST", change: "CHANGE TEST" } }
     assert_response :redirect
     assert_redirected_to root_path
 
     player_login
-    patch player_path(player), params: {player: {left: "true", fate: "FATE TEST", change: "CHANGE TEST"}}
+    patch player_path(player), params: { player: { left: "true", fate: "FATE TEST", change: "CHANGE TEST" } }
     assert_response :redirect
     assert_redirected_to player
 

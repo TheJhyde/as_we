@@ -1,10 +1,12 @@
-require 'test_helper'
-require 'rails/performance_test_help'
+# frozen_string_literal: true
+
+require "test_helper"
+require "rails/performance_test_help"
 
 class GamesControllerPerfTest < ActionDispatch::PerformanceTest
   # Refer to the documentation for all available options
   # self.profile_options = { runs: 5, metrics: [:wall_time, :memory],
-  #                          output: 'tmp/performance', formats: [:flat] }
+  #                          output: "tmp/performance", formats: [:flat] }
 
   def setup
     @game = games(:full_game)
@@ -14,17 +16,17 @@ class GamesControllerPerfTest < ActionDispatch::PerformanceTest
   #   post games_path
   # end
 
-  test 'show' do
+  test "show" do
     host_login
     get game_path(@game)
   end
 
-  # test 'start game' do
+  # test "start game" do
   #   host_login
   #   patch game_path(@game), params: {game: {state: "running"}}
   # end
 
-  # test 'end game' do
+  # test "end game" do
   #   host_login
   #   patch game_path(@game), params: {game: {state: "end"}}
   # end

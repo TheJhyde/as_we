@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 class GameChannel < ApplicationCable::Channel
   def subscribed
@@ -10,11 +10,11 @@ class GameChannel < ApplicationCable::Channel
   end
 
   def send_message(data)
-    Message.create(contents: data['contents'], conversation_id: data['conversation_id'], player_id: data['player_id'])
+    Message.create(contents: data["contents"], conversation_id: data["conversation_id"], player_id: data["player_id"])
   end
 
   def mark_read(data)
-    Notification.find_by(conversation_id: data['conversation_id'], player_id: data['player_id']).update(seen: true)
+    Notification.find_by(conversation_id: data["conversation_id"], player_id: data["player_id"]).update(seen: true)
   end
 
   def unsubscribed; end

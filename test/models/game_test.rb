@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class GameTest < ActiveSupport::TestCase
   def setup
@@ -8,7 +10,7 @@ class GameTest < ActiveSupport::TestCase
   test "set state and code before creation" do
     game = Game.create
     game.reload
-    refute_nil game.code
+    assert_not_nil game.code
     assert_equal "before", game.state
   end
 

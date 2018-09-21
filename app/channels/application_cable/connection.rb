@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
     identified_by :current_player
@@ -6,7 +8,7 @@ module ApplicationCable
       self.current_player = find_player
     end
 
-    private 
+    private
 
       def find_player
         if player == Player.find_by(id: cookies[:current_player])

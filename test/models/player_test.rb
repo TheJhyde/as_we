@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class PlayerTest < ActiveSupport::TestCase
   def setup
@@ -16,7 +18,7 @@ class PlayerTest < ActiveSupport::TestCase
     player = Player.create
     player.reload
 
-    refute_nil player.number
+    assert_not_nil player.number
   end
 
   test "set game" do
@@ -27,13 +29,13 @@ class PlayerTest < ActiveSupport::TestCase
   end
 
   test "valid game" do
-    refute Player.new(code: "invalid code").valid?
+    assert_not Player.new(code: "invalid code").valid?
     assert Player.new(code: @game.code).valid?
 
     assert Player.new(game: @game).valid?
     @game.update(state: "running")
-    refute Player.new(game: @game).valid?
-    refute Player.new(game: games(:full_game)).valid?
+    assert_not Player.new(game: @game).valid?
+    assert_not Player.new(game: games(:full_game)).valid?
   end
 
   test "find_conversation" do

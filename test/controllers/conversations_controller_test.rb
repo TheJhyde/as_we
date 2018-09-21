@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class ConversationsControllerTest < ActionDispatch::IntegrationTest
   def setup
@@ -17,14 +19,14 @@ class ConversationsControllerTest < ActionDispatch::IntegrationTest
 
     # But you can't see other player's conversations
     player_incorrect = player_login(:player_3)
-    get conversation_path(@conversation), params: {from: player_correct.id}
+    get conversation_path(@conversation), params: { from: player_correct.id }
     assert_response :redirect
     assert_redirected_to player_incorrect
 
     # The host can see anyone's conversations
     # But they need to set a "from" param otherwise it doesn't know which notifications to update
     host_login
-    get conversation_path(@conversation), params: {from: player_correct.id}
+    get conversation_path(@conversation), params: { from: player_correct.id }
     assert_response :success
   end
 

@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class GamesControllerTest < ActionDispatch::IntegrationTest
   include ActiveJob::TestHelper
@@ -30,17 +32,17 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "update" do
-    patch game_path(@game), params: {game: {state: "running"}}
+    patch game_path(@game), params: { game: { state: "running" } }
     assert_response :redirect
     assert_redirected_to root_path
 
     player = player_login
-    patch game_path(@game), params: {game: {state: "running"}}
+    patch game_path(@game), params: { game: { state: "running" } }
     assert_response :redirect
     assert_redirected_to player
 
     host_login
-    patch game_path(@game), params: {game: {state: "running"}}
+    patch game_path(@game), params: { game: { state: "running" } }
     assert_response :redirect
     assert_redirected_to @game
 
@@ -48,10 +50,10 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
     assert_equal "running", @game.state
     assert_enqueued_jobs 12
 
-    patch game_path(@game), params: {game: {state: "running"}}
+    patch game_path(@game), params: { game: { state: "running" } }
     assert_enqueued_jobs 12
 
-    patch game_path(@game), params: {game: {state: "end"}}
+    patch game_path(@game), params: { game: { state: "end" } }
     @game.reload
     assert_equal "end", @game.state
   end
