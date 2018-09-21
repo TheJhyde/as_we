@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 class ConversationsController < ApplicationController
   before_action :check_player
@@ -6,7 +6,7 @@ class ConversationsController < ApplicationController
   def show
     @conversation = Conversation.find(params[:id])
 
-    redirect_to current_player && return unless @conversation.players.exists?(id: cookies[:current_player]) || current_player.host?
+    redirect_to(current_player) && return unless @conversation.players.exists?(id: cookies[:current_player]) || current_player.host?
 
     @from = Player.find(params[:from] || cookies[:current_player])
     @conversation.notifications.find_by(player: @from).update(seen: true)
@@ -18,8 +18,8 @@ class ConversationsController < ApplicationController
       # If, among player_one's conversations, one exists that has a player with the id of the second player, redirect to the conversation
       # If we ever wanted to have conversations with >2 players, this would need to be revised to check if there's a conversation with exact the list of ids provided here
       # But for now we don't
-      if player_one.conversations.joins(:players).exists?(players: {id: params[:players][1]})
-        redirect_to player_one.conversations.joins(:players).find_by(players: {id: params[:players][1]})
+      if player_one.conversations.joins(:players).exists?(players: { id: params[:players][1] })
+        redirect_to player_one.conversations.joins(:players).find_by(players: { id: params[:players][1] })
       else
         convo = Conversation.new(players: [player_one, Player.find(params[:players][1])])
         if convo.save

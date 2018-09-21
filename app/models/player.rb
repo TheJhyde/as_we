@@ -9,7 +9,7 @@ class Player < ApplicationRecord
 
   attr_accessor :code
 
-  validate :has_game?, on: :create
+  validate :game_exists?, on: :create
   validate :valid_game?, on: :create
   before_create :set_game
   before_create :set_number

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Message < ApplicationRecord
   belongs_to :conversation
   belongs_to :player
@@ -29,7 +31,7 @@ class Message < ApplicationRecord
           # HRN is an upstanding resistance network, wouldn't lead us astray
           target = self.player.number == "HRN" ? Player.find_by(number: number) : Player.find_by(number: number, game: self.player.game)
           if target
-            {number: number, id: target.id}
+            { number: number, id: target.id }
           else
             nil
           end
@@ -37,7 +39,7 @@ class Message < ApplicationRecord
         links.compact!
 
         if links.length > 0
-          self.extra = JSON.parse(self.extra).merge({links: links.find_all {|n| n}}).to_json
+          self.extra = JSON.parse(extra).merge(links: links.find_all { |n| n }).to_json
         end
       end
     end
@@ -47,7 +49,7 @@ class Message < ApplicationRecord
     end
 
     def broadcast
-      broadcast = {message: self.contents, number: self.player.number, player: self.player.id, extra: self.extra, conversation: self.conversation.id, type: "msg"}
+      broadcast = { message: self.contents, number: self.player.number, player: self.player.id, extra: self.extra, conversation: self.conversation.id, type: "msg" }
 
       players = self.conversation.players
       players.each do |player|

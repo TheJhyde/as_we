@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GamesController < ApplicationController
   before_action :check_player, only: [:show, :update]
   before_action :check_host, only: [:show, :update]

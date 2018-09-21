@@ -1,6 +1,3 @@
 inherit_gem:
   rubocop-rails_config:
     - config/rails.yml
-
-Layout/IndentationConsistency:
-  EnforcedStyle: rails

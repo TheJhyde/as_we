@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NewsUpdateJob < ApplicationJob
   queue_as :default
 

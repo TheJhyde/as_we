@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PlayersController < ApplicationController
   before_action :redirect_to_main, only: [:login_page]
   before_action :check_player, only: [:show, :edit, :update]
@@ -17,7 +19,7 @@ class PlayersController < ApplicationController
   def show
     @player = Player.includes(:game, :conversations).find(params[:id])
     if @player.host || @player.number == "HRN"
-      redirect_to current_player.game and return
+      redirect_to current_player.game
     end
   end
 
@@ -29,8 +31,6 @@ class PlayersController < ApplicationController
   def update
     player = Player.find(params[:id])
     if player_params[:left] && (player_params[:left] == "true" || player_params[:left] == true)
-      p "0" * 127
-      p "Leaving?"
       player.leave
     end
     player.update(player_params)
@@ -59,7 +59,7 @@ class PlayersController < ApplicationController
 
     # games last 90 minutes + an extra 90 minutes for before game events. Just to be safe
     def set_cookies(player)
-      cookies[:current_player] = {value: player.id, expires: 3.hours}
-      cookies[:current_game] = {value: player.game.id, expires: 3.hours}
+      cookies[:current_player] = { value: player.id, expires: 3.hours }
+      cookies[:current_game] = { value: player.game.id, expires: 3.hours }
     end
 end
