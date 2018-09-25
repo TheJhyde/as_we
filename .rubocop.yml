@@ -8,3 +8,11 @@ AllCops:
     - Gemfile
     - 'db/schema.rb'
     - 'db/migrate/*'
+    - config.ru
+    - Rakefile
+    - config/boot.rb
+    - config/environment.rb
+    - config/environments/*
+    - config/initializers/*
+    - config/puma.rb
+    - config/spring.rb

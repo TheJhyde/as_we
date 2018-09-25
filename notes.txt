@@ -36,13 +36,20 @@ TO DO BUT NOT RIGHT NOW, THIS STUFF DOESN'T MATTER RIGHT NOW
 -If the chat box is shorter than it's maximum size, when the keyboard comes up you can't see the bottom of the chat window
 
 DOING IT PROPERLY
--Tests for channels
--Javascript testing
 -Optimizing the database requests
--Test for jobs
 -Upping the Accessibility
 -Test performance generally
 -What kind of backend am I using to run the jobs?
 -Firefox seems finicky with channels
   -I can build this with ajax calls. But I'd have to 1. do it and 2. detect the failure to connect to the channel and switch over to ajax styles
 -Convert to vanilla javascript
+-100% test coverage
+
+-Tests for channels
+  -It does appear there are testing utilities for channels. Not sure if there's much in the way of documentation though
+-Javascript testing
+  -So far, this is a nightmare. System testings are intended to simulate running through the system as on a browser, javascript and all
+  -But I can't figure out how to get it to wait for things to happen. I'm looking at events which are triggered by server, with no input from the user, and which should cause changes on the user's side. How to get it to wait for that?
+  -Lots of documentation on how /not/ to do that. Basically fucking nothing on how /to/ do it
+  https://guides.rubyonrails.org/testing.html#system-testing
+  

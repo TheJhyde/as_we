@@ -23,7 +23,7 @@ two:
 
 <% 4.times do |i| %>
 player_<%= i + 1 %>:
-  number: 1234<%= i %>
+  number: 1234<%= i + 1 %>
   host: false
   left: false
   game: full_game

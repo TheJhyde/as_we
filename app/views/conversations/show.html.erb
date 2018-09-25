@@ -7,7 +7,7 @@
         <%= image_tag "back.png", id: "nav", class: @from.any_unread? ? "notification" : "" %>
       <% end %>
     </div>
-    <div>
+    <div id="conversation-people">
       <%= @conversation.players.pluck(:number).join(", ") %><br>
     </div>
   </div>

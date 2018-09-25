@@ -23,3 +23,13 @@ four:
   player: player_2
   conversation: two
   seen: true
+
+one_and_hrn:
+  player: player_1
+  conversation: with_hrn
+  seen: true
+
+hrn_and_one:
+  player: hrn
+  conversation: with_hrn
+  seen: true

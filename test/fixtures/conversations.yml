@@ -2,3 +2,5 @@ one:
   created_at: <%= DateTime.now %>
 two: 
   created_at: <%= DateTime.now %>
+with_hrn:
+  created_at: <%= DateTime.now %>

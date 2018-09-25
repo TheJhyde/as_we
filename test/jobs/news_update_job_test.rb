@@ -4,7 +4,7 @@ require "test_helper"
 
 class NewsUpdateJobTest < ActiveJob::TestCase
   test "perform" do
-    assert_difference 'Message.count', 2 do
+    assert_difference "Message.count", 2 do
       NewsUpdateJob.perform_now([players(:player_2), players(:player_3)], "TEST MESSAGE")
     end
 
