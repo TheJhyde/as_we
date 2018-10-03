@@ -9,15 +9,16 @@ function conversationPage(player_id, conversation_id){
     chat.scrollTop(chat[0].scrollHeight);
 
     // Grabs the form, sets up sending the message to the backend
-    var form = $('#new-message');
-    var form_body = $("#message-body");
-    form.submit((e) => {
-      var msg = form_body.val();
-      var scope = this;
+    var form = document.getElementById("new-message");
+    var form_body = document.getElementById("message-body");
+
+    form.addEventListener("submit", function(e){
+      console.log("running form");
+      var msg = form_body.value;
       if(msg.length > 0){
-        App.chat.perform('send_message', {contents: msg, conversation_id, player_id});
+        App.chat.perform('send_message', {contents: msg, conversation_id, player_id})
       }
-      form_body.val("");
+      form_body.value = "";
 
       e.preventDefault();
       return false;

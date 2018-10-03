@@ -11,8 +11,9 @@ module ApplicationCable
     private
 
       def find_player
-        if current_player == Player.find_by(id: cookies[:current_player])
-          current_player
+        player = Player.find_by(id: cookies[:current_player])
+        if player
+          player
         else
           reject_unauthorized_connection
         end

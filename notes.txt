@@ -2,6 +2,10 @@ Big Picture:
 -Back button problem
 -Big styling overhaul
 
+-Mark phone numbers
+-Should games shut down automatically if they run too long?
+-Players are forced to leave and they are randomly assigned a end and change - they just draw one of each and get it.
+
 Host Page 
   -List of news updates, posted and to come
     -Probably best to revise how updates are done entirely in that case, put them in the database in some fashion
@@ -16,11 +20,8 @@ A "credits" page which lists what happened to each player
 TO ASK ALEX
 -Should disconnected players be able to see conversations?
   -I think: they shouldn't, but they should be able too once the game is over
--Should players forced to leave at the end of the game and get too choose left options
-  -Yes, I think they should
 
-
-TO DO BUT NOT RIGHT NOW, THIS STUFF DOESN'T MATTER RIGHT NOW
+Styling
 -Maybe make the cut-off for the mobile styling a little smaller
 -The link text is different in from messages vs too messages, which bothers me. It should be consistent, lest the players read into it
 -There's a lot of empty space at the bottom of the conversation screen. should probably do something about that

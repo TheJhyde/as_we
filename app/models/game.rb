@@ -34,35 +34,49 @@ class Game < ApplicationRecord
       # This assumes there is exactly 4 players.
       # If there are less than 4 players, the updates with numbers will break
       # If there are more than 4 players, player 5+ won't receive any news
-      NewsUpdateJob.set(wait: 5.minutes).perform_later(p + host, "UPDATE: This is the Humanity Resistance Network. Alien forces claim to have eliminated all human life, but they’re wrong. Attempts are currently being made to establish new lines of communication. If you can read this message, please monitor your phone for further updates and stay inside.")
+      NewsUpdateJob.set(wait: 9.minutes).perform_later(p + host, "This is the Humanity Resistance Network. Alien forces claim to have eliminated all human life, but they’re wrong. Attempts are currently being made to establish new lines of communication. If you can read this message, please monitor your phone for further updates and stay inside.")
 
-      NewsUpdateJob.set(wait: 7.minutes).perform_later(p.values_at(0, 1, 2) + host, "UPDATE: If you see :) ==+ sas 294301-23 /line;; immediately =P jkjkjk Please stay inside.")
+      NewsUpdateJob.set(wait: 12.minutes).perform_later(p.values_at(0, 1, 2) + host, "HRN UPDATE: If you have reason to believe")
 
-      NewsUpdateJob.set(wait: 10.minutes).perform_later(p.values_at(2, 3) + host, "UPDATE: Aliens found a human safe house. Most humans killed, some taken captive. Please stay inside")
+      NewsUpdateJob.set(wait: 12.minutes + 15.seconds).perform_later(p.values_at(1, 2, 3) + host, "Please stay inside")
 
-      if p[0]
-        NewsUpdateJob.set(wait: 12.minutes).perform_later(p.values_at(1) + host, "UPDATE: We have been able to establish limited text communication. This phone number should connect you to another survivor: #{p[0].number}. Please stay inside.")
+      NewsUpdateJob.set(wait: 15.minutes).perform_later(p.values_at(1, 2) + host, "HRN UPDATE: Aliens found a human safe house. Most humans killed, some taken captive. Please stay inside.")
+
+      # ------ SEND NUMBERS
+      NewsUpdateJob.set(wait: 18.minutes).perform_later(p.values_at(0, 2, 3) + host, "HRN UPDATE: We have been able to establish limited text communication. This code number should connect you to another survivor. Please stay inside.")
+
+      if p[1]
+        NewsUpdateJob.set(wait: 18.minutes+10.seconds, p.values(0), "#{p[1].number}")
       end
 
-      if p[3]
-        NewsUpdateJob.set(wait: 12.minutes + 10.seconds).perform_later(p.values_at(2) + host, "UPDATE: We have been able to establish limited text communication. This phone number should connect you to another survivor: #{p[3].number}. Please stay inside.")
+      if p[2]
+        NewsUpdateJob.set(wait: 18.minutes+20.seconds, p.values(3), "#{p[2].number}")
       end
 
-      NewsUpdateJob.set(wait: 17.minutes).perform_later(players + host, "UPDATE: Aliens have offered 'leniency to any human that surrenders itself peacefully. It will be sterilized and allowed to live its life in captivity.' Please stay inside.")
 
-      if p[0]
-        NewsUpdateJob.set(wait: 20.minutes).perform_later(p.values_at(2) + host, "UPDATE: We have been able to establish further text communication. This phone number should connect you to another survivor: #{p[0].number}. Please stay inside.")
+      NewsUpdateJob.set(wait: 18.minutes + 30.seconds).perform_later(p.values_at(2), "#{host.number}")
+      # -------------
+
+      NewsUpdateJob.set(wait: 25.minutes).perform_later(players + host, "HRN UPDATE: Aliens have offered 'leniency to any human that surrenders itself peacefully. It will be sterilized and allowed to live its life in captivity.' Please stay inside.")
+
+
+      # ------------ SEND NUMBERS, PART 2
+
+      NewsUpdateJob.set(wait: 25.minutes).perform_later(players + host, "HRN UPDATE: We have been able to establish a wider network for communication. This code should connect you to another survivor. Please stay inside.")
+
+      if p[2]
+        NewsUpdateJob.set(wait: 45.minutes + 10.seconds).perform_later(p.values_at(0), "#{p[2].number}")
       end
 
-      NewsUpdateJob.set(wait: 25.minutes).perform_later(p.values_at(0, 2, 3) + host, "UPDATE: New safehouse established in Colorado Springs. Fresh food and water available. Only seek it out if you can reach it safely without being followed. Otherwise, please stay inside.")
+      NewsUpdateJob.set(wait: 52.minutes).perform_later(p.values_at(0, 2, 3) + host, "HRN UPDATE: New safehouse established in Colorado Springs. Fresh food and water available. Only seek it out if you can reach it safely without being followed. Otherwise, please stay inside.")
 
-      NewsUpdateJob.set(wait: 30.minutes).perform_later(p.values_at(0, 3) + host, "UPDATE: We have been able to establish audio communication. Calls are vulnerable to surveillance.")
+      NewsUpdateJob.set(wait: 58.minutes).perform_later(p.values_at(0, 3) + host, "HRN UPDATE: We have been able to establish audio communication. You may call other survivors if you exchange numbers. Be careful. Calls are vulnerable to surveillance.")
 
-      NewsUpdateJob.set(wait: 45.minutes).perform_later(p.values_at(1, 2) + host, "UPDATE: Former alien general publicly decries wanton slaughter of humans")
+      NewsUpdateJob.set(wait: 70.minutes).perform_later(p.values_at(1, 2) + host, "HRN UPDATE: Former alien general publicly decries wanton slaughter of humans")
 
-      NewsUpdateJob.set(wait: 55.minutes).perform_later(players + host, "UPDATE: HRN leader assassinated. We are still here and they can not silence us.")
+      NewsUpdateJob.set(wait: 75.minutes).perform_later(players + host, "HRN UPDATE: HRN leader assassinated. We are still here and they can not silence us.")
 
-      NewsUpdateJob.set(wait: 60.minutes).perform_later(players + host, "The game is now over.")
+      NewsUpdateJob.set(wait: 90.minutes).perform_later(players + host, "The game is now over.")
     end
   end
 
@@ -98,23 +112,23 @@ class Game < ApplicationRecord
 
   def fates
     [
-        "You are killed by an alien militia in less than a week.",
-        "You see so many of your fellow humans suffer horrible fates that you decide to take your own life within a month.",
-        "You surrender or are captured by the alien government. They chemically sterilize you, and you live out your days as a servant in alien society.",
-        "You spend your days on the run. you have no home and no source of clean water or food. You might survive, barely.",
-        "You find a safe place to live with a human companion. You might be able to produce a single child.",
-        "You publicly join the resistance and are assassinated. Humanity is inspired by your sacrifice. You are remembered."
+        "you are killed by an alien militia in less than a week.",
+        "you see so many of your fellow humans suffer horrible fates that you decide to take your own life within a month.",
+        "you surrender or are captured by the alien government. they chemically sterilize you, and you live out your days as a servant in alien society.",
+        "you spend your days on the run. you have no home and no source of clean water or food. you might survive, barely.",
+        "you find a safe place to live with a human companion. you produce a single child, who is taken from you by the aliens after a few years.",
+        "you publicly join the resistance and are assassinated. humanity is inspired by your sacrifice. you are remembered."
       ] - self.players.where(left: true).pluck(:fate)
   end
 
   def changes
     [
-      "In less than a year, a human territory is established.",
-      "Laws are passed banning maltreatment of humans.",
-      "Enough humans survive so that the species will not die out.",
-      "Alien entertainment portrays a human character. It is inaccurate.",
-      "A human learns alien law. they are allowed to practice as lawyer.",
-      "Humans are allowed to reproduce."
+      "in less than a year, a human territory is established.",
+      "laws are passed banning maltreatment of humans.",
+      "enough humans survive so that the species will not die out.",
+      "alien entertainment portrays a human character. it is inaccurate.",
+      "a human learns alien law. they are allowed to practice as lawyer.",
+      "humans are legally allowed to reproduce."
     ] - self.players.where(left: true).pluck(:change)
   end
 
