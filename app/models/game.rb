@@ -46,15 +46,15 @@ class Game < ApplicationRecord
       NewsUpdateJob.set(wait: 18.minutes).perform_later(p.values_at(0, 2, 3) + host, "HRN UPDATE: We have been able to establish limited text communication. This code number should connect you to another survivor. Please stay inside.")
 
       if p[1]
-        NewsUpdateJob.set(wait: 18.minutes+10.seconds, p.values(0), "#{p[1].number}")
+        NewsUpdateJob.set(wait: 18.minutes + 10.seconds).perform_later(p.values_at(0), "#{p[1].number}")
       end
 
       if p[2]
-        NewsUpdateJob.set(wait: 18.minutes+20.seconds, p.values(3), "#{p[2].number}")
+        NewsUpdateJob.set(wait: 18.minutes + 20.seconds).perform_later(p.values_at(3), "#{p[2].number}")
       end
 
 
-      NewsUpdateJob.set(wait: 18.minutes + 30.seconds).perform_later(p.values_at(2), "#{host.number}")
+      NewsUpdateJob.set(wait: 18.minutes + 30.seconds).perform_later(p.values_at(2), "#{host[0].number}")
       # -------------
 
       NewsUpdateJob.set(wait: 25.minutes).perform_later(players + host, "HRN UPDATE: Aliens have offered 'leniency to any human that surrenders itself peacefully. It will be sterilized and allowed to live its life in captivity.' Please stay inside.")

@@ -21,11 +21,11 @@ class ConversationChannelsTest < ApplicationSystemTestCase
 
     # The user can fill out the form and submit a message.
     # This should create a message on the server side
-    assert_difference 'Message.count' do
-      find('#message-body').set("TEST TEXT")
-      find('#message-submit').click
+    assert_difference "Message.count" do
+      find("#message-body").set("TEST TEXT")
+      find("#message-submit").click
 
-      find('.message-contents')
+      find(".message-contents")
       assert has_selector? ".message-contents", text: "TEST TEXT"
       assert_no_selector "#nav.notification"
     end
@@ -38,9 +38,8 @@ class ConversationChannelsTest < ApplicationSystemTestCase
 
     # # No notification, cause we're already here
     # # I need to put in some kind of wait here
-    # # I assume that's why the selector isn't revealing anything
+    # # I assume that"s why the selector isn"t revealing anything
     # assert_no_selector "#nav.notification"
     # assert_selector ".message-contents", text: "Message from HRN"
-
   end
 end
