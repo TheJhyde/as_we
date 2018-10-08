@@ -17,6 +17,10 @@ class Game < ApplicationRecord
   def start
     update(state: "running", start_time: DateTime.now)
 
+    if Player.exists?(number: "HRN", left: true)
+      Player.find_by(number: "HRN").update(left: false)
+    end
+
     self.players.each do |player|
       player.broadcast_to(type: "state", state: "running")
     end
@@ -57,12 +61,12 @@ class Game < ApplicationRecord
       NewsUpdateJob.set(wait: 18.minutes + 30.seconds).perform_later(p.values_at(2), "#{host[0].number}")
       # -------------
 
-      NewsUpdateJob.set(wait: 25.minutes).perform_later(players + host, "HRN UPDATE: Aliens have offered 'leniency to any human that surrenders itself peacefully. It will be sterilized and allowed to live its life in captivity.' Please stay inside.")
+      NewsUpdateJob.set(wait: 25.minutes).perform_later(p + host, "HRN UPDATE: Aliens have offered 'leniency to any human that surrenders itself peacefully. It will be sterilized and allowed to live its life in captivity.' Please stay inside.")
 
 
       # ------------ SEND NUMBERS, PART 2
 
-      NewsUpdateJob.set(wait: 25.minutes).perform_later(players + host, "HRN UPDATE: We have been able to establish a wider network for communication. This code should connect you to another survivor. Please stay inside.")
+      NewsUpdateJob.set(wait: 45.minutes).perform_later(p + host, "HRN UPDATE: We have been able to establish a wider network for communication. This code should connect you to another survivor. Please stay inside.")
 
       if p[2]
         NewsUpdateJob.set(wait: 45.minutes + 10.seconds).perform_later(p.values_at(0), "#{p[2].number}")
@@ -74,9 +78,9 @@ class Game < ApplicationRecord
 
       NewsUpdateJob.set(wait: 70.minutes).perform_later(p.values_at(1, 2) + host, "HRN UPDATE: Former alien general publicly decries wanton slaughter of humans")
 
-      NewsUpdateJob.set(wait: 75.minutes).perform_later(players + host, "HRN UPDATE: HRN leader assassinated. We are still here and they can not silence us.")
+      NewsUpdateJob.set(wait: 75.minutes).perform_later(p + host, "HRN UPDATE: HRN leader assassinated. We are still here and they can not silence us.")
 
-      NewsUpdateJob.set(wait: 90.minutes).perform_later(players + host, "The game is now over.")
+      NewsUpdateJob.set(wait: 90.minutes).perform_later(p + host, "The game is now over.")
     end
   end
 
@@ -116,7 +120,7 @@ class Game < ApplicationRecord
         "you see so many of your fellow humans suffer horrible fates that you decide to take your own life within a month.",
         "you surrender or are captured by the alien government. they chemically sterilize you, and you live out your days as a servant in alien society.",
         "you spend your days on the run. you have no home and no source of clean water or food. you might survive, barely.",
-        "you find a safe place to live with a human companion. you produce a single child, who is taken from you by the aliens after a few years.",
+        "you find a safe place to live with a human companion. you produce a single child.",
         "you publicly join the resistance and are assassinated. humanity is inspired by your sacrifice. you are remembered."
       ] - self.players.where(left: true).pluck(:fate)
   end

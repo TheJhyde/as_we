@@ -5,6 +5,8 @@ Big Picture:
 -Mark phone numbers
 -Should games shut down automatically if they run too long?
 -Players are forced to leave and they are randomly assigned a end and change - they just draw one of each and get it.
+-The "PLAYER HAS LEFT" messages mark conversations as unread, which they probably shouldn't. It's not really relevant
+  -Maybe the game ending should mark all notifications as read
 
 Host Page 
   -List of news updates, posted and to come

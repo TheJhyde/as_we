@@ -9,7 +9,7 @@ class NewsUpdateJob < ApplicationJob
     players.each do |player|
       unless player.nil?
         convo = hrn.find_conversation(player)
-        Message.create(conversation: convo, player: hrn, contents: message)
+        msg = Message.create(conversation: convo, player: hrn, contents: message)
       end
     end
   end
