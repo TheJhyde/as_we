@@ -1,22 +1,12 @@
+California Time:
+Saturday 2 pm - 4 pm 
+Sunday 2 pm - 4 pm
+
 Big Picture:
-
--It's nice to have something to signal when HRN sends message to people
-  -But the unread notification shouldn't be used to signal that - the host needs know if a player is trying to contact them through HRN
-  -When the javascript detects a HRN to Host message, that shouldn't be marked as "unread"
-
 -Back button problem
 -Last three messages didn't go out (??)
 
 -Mark phone numbers
-
--Should games shut down automatically if they run too long?
-
-Host Page 
-  -List of news updates, posted and to come
-    -Probably best to revise how updates are done entirely in that case, put them in the database in some fashion
-    -And then the host could potentially update them before the game starts! That'd be neato.
-
-A "credits" page which lists what happened to each player
 
 Big Styling Overhaul
 -Maybe make the cut-off for the mobile styling a little smaller
@@ -54,6 +44,11 @@ DOING IT PROPERLY
 New Features
 -Host should maybe receive messages with a list of who has received them
 -I think I want timestamps on messages
+-A "credits" page which lists what happened to each player
+-If multiple games are happening at once
+  -HRN will receive the updates from javascript for both
+  -Honestly I think that's the last straw - I've got to overhaul HRN
+  -But, later
 
 TO ASK ALEX
 -Should disconnected players be able to see conversations?

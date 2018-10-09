@@ -8,6 +8,12 @@ class PlayersControllerTest < ActionDispatch::IntegrationTest
       post players_path(player: { code: games(:one).code })
       assert_response :redirect
     end
+
+    assert_no_difference "Player.count" do
+      post players_path(player: {code: "INVALID CODE"})
+      assert_response :redirect
+      assert_redirected_to root_path
+    end
   end
 
   test "show" do
@@ -80,5 +86,9 @@ class PlayersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     assert_redirected_to player
     assert_equal "#{player.id}", cookies[:current_player]
+
+    post players_login_path(id: 999)
+    assert_response :redirect
+    assert_redirected_to root_path
   end
 end

@@ -3,7 +3,7 @@
 <div id="player-banner">
   <div>
     <div>
-      <%= link_to @from.host ? game_path(@from.game) : player_path(@from) do %>
+      <%= link_to @from.host ? game_path(@game) : player_path(@from) do %>
         <%= image_tag "back.png", id: "nav", class: @from.any_unread? ? "notification" : "" %>
       <% end %>
     </div>
@@ -18,7 +18,7 @@
 
 <div id="messages">
   <% @conversation.messages.each do |msg| %>
-    <%= render partial: "messages/show", locals: {message: msg, current_player: @from} %>
+    <%= render partial: "messages/show", locals: {message: msg, current_player: @from, time: distance_of_time_in_words(@game.start_time, msg.created_at)} %>
   <% end %>
   <% if @conversation.game.state == "end" %>
     <div class='message system'>

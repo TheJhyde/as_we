@@ -36,7 +36,6 @@ class Game < ApplicationRecord
       # TODO: Move all this into an external file, like a locale or something, for easier updates
 
       # This assumes there is exactly 4 players.
-      # If there are less than 4 players, the updates with numbers will break
       # If there are more than 4 players, player 5+ won't receive any news
       NewsUpdateJob.set(wait: 9.minutes).perform_later(p + host, "This is the Humanity Resistance Network. Alien forces claim to have eliminated all human life, but they’re wrong. Attempts are currently being made to establish new lines of communication. If you can read this message, please monitor your phone for further updates and stay inside.")
 
@@ -44,21 +43,20 @@ class Game < ApplicationRecord
 
       NewsUpdateJob.set(wait: 12.minutes + 15.seconds).perform_later(p.values_at(1, 2, 3) + host, "Please stay inside")
 
-      NewsUpdateJob.set(wait: 15.minutes).perform_later(p.values_at(1, 2) + host, "HRN UPDATE: Aliens found a human safe house. Most humans killed, some taken captive. Please stay inside.")
+      NewsUpdateJob.set(wait: 15.minutes).perform_later(p.values_at(1, 3) + host, "HRN UPDATE: Aliens found a human safe house. Most humans killed, some taken captive. Please stay inside.")
 
       # ------ SEND NUMBERS
       NewsUpdateJob.set(wait: 18.minutes).perform_later(p.values_at(0, 2, 3) + host, "HRN UPDATE: We have been able to establish limited text communication. This code number should connect you to another survivor. Please stay inside.")
 
-      if p[1]
+      if !p[1].nil?
         NewsUpdateJob.set(wait: 18.minutes + 10.seconds).perform_later(p.values_at(0), "#{p[1].number}")
       end
 
-      if p[2]
+      if !p[2].nil?
         NewsUpdateJob.set(wait: 18.minutes + 20.seconds).perform_later(p.values_at(3), "#{p[2].number}")
       end
 
-
-      NewsUpdateJob.set(wait: 18.minutes + 30.seconds).perform_later(p.values_at(2), "#{host[0].number}")
+      NewsUpdateJob.set(wait: 18.minutes + 30.seconds).perform_later(p.values_at(1), "#{host[0].number}")
       # -------------
 
       NewsUpdateJob.set(wait: 25.minutes).perform_later(p + host, "HRN UPDATE: Aliens have offered 'leniency to any human that surrenders itself peacefully. It will be sterilized and allowed to live its life in captivity.' Please stay inside.")
@@ -67,13 +65,13 @@ class Game < ApplicationRecord
       # ------------ SEND NUMBERS, PART 2
 
 
-      if p[1]
-        NewsUpdateJob.set(wait: 25.minutes).perform_later(host, "Attention Host: You may have the Imposter contact player #{p[1].number} now.")
+      if !p[1].nil?
+        NewsUpdateJob.set(wait: 32.minutes).perform_later(host, "Attention Host: You may have the Imposter contact player #{p[1].number} now.")
       end
 
       NewsUpdateJob.set(wait: 45.minutes).perform_later(p + host, "HRN UPDATE: We have been able to establish a wider network for communication. This code should connect you to another survivor. Please stay inside.")
 
-      if p[2]
+      if !p[2].nil?
         NewsUpdateJob.set(wait: 45.minutes + 10.seconds).perform_later(p.values_at(0), "#{p[2].number}")
       end
 
@@ -97,6 +95,7 @@ class Game < ApplicationRecord
       player.leave unless player.left?
       player.broadcast_to(type: "state", state: "end")
     end
+    Player.find_by(number: "HRN").notifications.update_all(seen: true)
 
     self.players.update_all(left: true)
   end

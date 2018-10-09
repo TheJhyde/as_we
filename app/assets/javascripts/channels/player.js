@@ -10,9 +10,7 @@ function playerPage(player_id){
         switch(data.type){
           case "msg":
             var tab = $("#conversations-" + player_id + " #conversation-" + data.conversation)
-            if(tab.length > 0){
-              tab.toggleClass("unseen", true);
-            }else{
+            if(tab.length == 0){
               $("#conversations-" + player_id).append(
                 "<a href='/conversations/"+data.conversation+"?from="+player_id+"'>" + 
                   "<div id='conversation-"+data.conversation+"' class='conversation unseen'>" +
@@ -20,6 +18,10 @@ function playerPage(player_id){
                   "</div>" + 
                 "</a>"
               );
+            }else if(data.player != player_id){
+              // Don't trigger the unseen notification if the message is from this player
+              // Only really relevant for HRN
+              tab.toggleClass("unseen", true);
             }
             break;
           case "state":
@@ -32,7 +34,7 @@ function playerPage(player_id){
           default:
             console.log("Received message of unknown type", data)
         }
-        console.log("Received from channel:", data);
+        console.log("REceived message", data);
       }, 
       rejected: () => console.log("Rejected!")
     }

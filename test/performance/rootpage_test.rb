@@ -8,8 +8,8 @@ class RootpageTest < ActionDispatch::PerformanceTest
   # self.profile_options = { runs: 5, metrics: [:wall_time, :memory],
   #                          output: "tmp/performance", formats: [:flat] }
 
-  test "homepage" do
-    get "/"
-    assert true
-  end
+  # test "homepage" do
+  #   get "/"
+  #   assert true
+  # end
 end

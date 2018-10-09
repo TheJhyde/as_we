@@ -13,7 +13,6 @@ function conversationPage(player_id, conversation_id){
     var form_body = document.getElementById("message-body");
 
     form.addEventListener("submit", function(e){
-      console.log("running form");
       var msg = form_body.value;
       if(msg.length > 0){
         App.chat.perform('send_message', {contents: msg, conversation_id, player_id})

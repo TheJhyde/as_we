@@ -38,14 +38,15 @@ class PlayersController < ApplicationController
   end
 
   def login_page
-    @players = Player.where(left: false)
+    @games = Game.includes(:players).where.not(state: "end")
+    # @players = Player.where(left: false).where.not(number: "HRN")
   end
 
   def login
-    @player = Player.find(params[:id])
-    if @player.save
-      set_cookies(@player)
-      redirect_to @player
+    player = Player.find_by(id: params[:id])
+    if player
+      set_cookies(player)
+      redirect_to player
     else
       flash[:alert] = "We could not find that player"
       redirect_to root_path

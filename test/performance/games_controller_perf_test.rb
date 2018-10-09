@@ -16,10 +16,10 @@ class GamesControllerPerfTest < ActionDispatch::PerformanceTest
   #   post games_path
   # end
 
-  test "show" do
-    host_login
-    get game_path(@game)
-  end
+  # test "show" do
+  #   host_login
+  #   get game_path(@game)
+  # end
 
   # test "start game" do
   #   host_login

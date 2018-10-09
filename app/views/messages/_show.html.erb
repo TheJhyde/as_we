@@ -20,7 +20,7 @@
             )
           end
         end
-        if message.extra_info.has_key("phone")
+        if message.extra_info.has_key?("phone")
           message.extra_info["phone"].each do |phone|
             contents.gsub!(
               phone,

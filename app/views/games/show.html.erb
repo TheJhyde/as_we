@@ -24,7 +24,14 @@
         <% if player.host? %>
           <li><%= player.number %> (HOST)</li>
         <% else %>
-          <li id="player-list-<%= player.id %>"><%= link_to player.number, conversations_path(players: [player.id, @host.id]), method: :post %> <% if player.left? %>(LEFT)<% end %> </li>
+          <li id="player-list-<%= player.id %>">
+            <% if @game.state == "running" %>
+              <%= link_to player.number, conversations_path(players: [player.id, @host.id]), method: :post %>
+            <% else %>
+              <%= player.number %>
+            <% end %>
+            <% if player.left? %> (LEFT)<% end %> 
+          </li>
         <% end %>
       <% end %>
       <% if @game.players.count == 5 && @game.state == "before" %>
@@ -34,7 +41,7 @@
   </div>
 
   <br/>
-  <h2>Host Conversations(<%= @host.number %>)</h2>
+  <h2>Host Conversations (<%= @host.number %>)</h2>
   <%= render partial: "players/conversation_list", locals: {player: @host, conversations: @host.conversations, use_from: false} %>
 
   <h2>HRN Conversations</h2>
