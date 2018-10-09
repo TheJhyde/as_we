@@ -25,7 +25,7 @@ class Game < ApplicationRecord
       player.broadcast_to(type: "state", state: "running")
     end
 
-    p = self.players.where(host: false).to_a
+    p = self.players.where(host: false).order(:created_at).to_a
     host = [self.players.find_by(host: true)]
 
     if Rails.env.development? && false
@@ -66,6 +66,11 @@ class Game < ApplicationRecord
 
       # ------------ SEND NUMBERS, PART 2
 
+
+      if p[1]
+        NewsUpdateJob.set(wait: 25.minutes).perform_later(host, "Attention Host: You may have the Imposter contact player #{p[1].number} now.")
+      end
+
       NewsUpdateJob.set(wait: 45.minutes).perform_later(p + host, "HRN UPDATE: We have been able to establish a wider network for communication. This code should connect you to another survivor. Please stay inside.")
 
       if p[2]
@@ -99,7 +104,7 @@ class Game < ApplicationRecord
   def outcomes(key)
     # MAGIC NUMBER - how long you have to stay inside for the game to not just kills you
     Rails.cache.fetch(key, expires_in: 1.minute) do
-      if start_time > 17.minutes.ago
+      if start_time > 25.minutes.ago
         { fate: ["You were spotted by an alien. They killed you. You are dead. You will no longer be able to play this game."], change: ["NA"] }
       else
         players_left = players.where(left: true).count

@@ -6,6 +6,7 @@ class Message < ApplicationRecord
 
   validate :check_player
   before_save :mark_number
+  # before_save :mark_phone
   after_create :mark_unread
   after_create :broadcast
 
@@ -43,6 +44,16 @@ class Message < ApplicationRecord
         end
       end
     end
+
+    # def mark_phone
+    #   numbers = self.contents.scan(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/)
+
+    #   match = "333-333-3333 blah".match(/^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/)
+
+    #   if numbers.length > 0
+    #     self.extra = JSON.parse(extra).merge(phone: numbers.uniq.to_json)
+    #   end
+    # end
 
     def mark_unread
       self.conversation.notifications.where.not(player: self.player).update(seen: false)

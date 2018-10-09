@@ -46,6 +46,14 @@ class Player < ApplicationRecord
       )
     end
 
+    notifications.update_all(seen: true)
+
+    if change.nil? && fate.nil?
+      self.change = game.changes.sample
+      self.fate = game.fates.sample
+      self.save
+    end
+
     ActionCable.server.broadcast(
       "host_channel_#{game.id}",
       type: "player_leave",

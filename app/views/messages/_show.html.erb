@@ -8,17 +8,28 @@
       <%= message.player.number %>
     </div>
     <div class="message-contents">
-      <% if message.extra_info.has_key?("links") %>
-        <% 
-          contents = sanitize(message.contents)
+      <%
+        # This is very bad formatting, but I can't figure out how to get this properly built
+        # I need both the html generation methods
+        contents = sanitize(message.contents)
+        if message.extra_info.has_key?("links")
           message.extra_info["links"].each do |link|
-            contents.gsub!(link["number"], link_to(link["number"], conversations_path(players: [link["id"], current_player.id]), method: :post))
+            contents.gsub!(
+              link["number"], 
+              link_to(link["number"], conversations_path(players: [link["id"], current_player.id]), method: :post)
+            )
           end
-        %>
-        <%= contents.html_safe %>
-      <% else %>
-        <%= message.contents %>
-      <% end %>
+        end
+        if message.extra_info.has_key("phone")
+          message.extra_info["phone"].each do |phone|
+            contents.gsub!(
+              phone,
+              link_to(phone, "tel:#{phone}")
+            )
+          end
+        end
+      %>
+      <%= contents.html_safe %>
     </div>
   </div>
 <% end %>

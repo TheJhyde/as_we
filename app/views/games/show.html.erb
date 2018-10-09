@@ -20,7 +20,7 @@
     <h3>Player List</h3>
     Click on a player to start a conversation with them.
     <ul id="player-list">
-      <% @game.players.each do |player| %>
+      <% @game.players.order(:created_at).each do |player| %>
         <% if player.host? %>
           <li><%= player.number %> (HOST)</li>
         <% else %>
@@ -30,7 +30,7 @@
       <% if @game.players.count == 5 && @game.state == "before" %>
         There are four players online and the game may begin.
       <% end %>
-    </ul>
+    </ol>
   </div>
 
   <br/>

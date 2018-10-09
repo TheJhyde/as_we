@@ -48,10 +48,10 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
 
     @game.reload
     assert_equal "running", @game.state
-    assert_enqueued_jobs 16
+    assert_enqueued_jobs 17
 
     patch game_path(@game), params: { game: { state: "running" } }
-    assert_enqueued_jobs 16
+    assert_enqueued_jobs 17
 
     patch game_path(@game), params: { game: { state: "end" } }
     @game.reload

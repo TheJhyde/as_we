@@ -49,8 +49,25 @@ class PlayerTest < ActiveSupport::TestCase
   end
 
   test "leave" do
+    @player.notifications.first.update(seen: false)
+
     assert_difference "Message.count" do
       @player.leave
     end
+
+    @player.reload
+
+    assert_not @player.change.nil?
+    assert_not @player.fate.nil?
+    assert @player.notifications.first.seen
+  end
+
+  test "player that has already left" do
+    @player.update(change: "TEST CHANGE")
+    @player.leave
+    @player.reload
+    assert_equal "TEST CHANGE", @player.change
+    assert @player.fate.nil?
+
   end
 end

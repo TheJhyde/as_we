@@ -1,34 +1,27 @@
 Big Picture:
+
+-It's nice to have something to signal when HRN sends message to people
+  -But the unread notification shouldn't be used to signal that - the host needs know if a player is trying to contact them through HRN
+  -When the javascript detects a HRN to Host message, that shouldn't be marked as "unread"
+
 -Back button problem
--Big styling overhaul
+-Last three messages didn't go out (??)
 
 -Mark phone numbers
+
 -Should games shut down automatically if they run too long?
--Players are forced to leave and they are randomly assigned a end and change - they just draw one of each and get it.
--The "PLAYER HAS LEFT" messages mark conversations as unread, which they probably shouldn't. It's not really relevant
-  -Maybe the game ending should mark all notifications as read
--Host should maybe receive messages with a list of who has received them
 
 Host Page 
   -List of news updates, posted and to come
     -Probably best to revise how updates are done entirely in that case, put them in the database in some fashion
     -And then the host could potentially update them before the game starts! That'd be neato.
 
--It's nice to have something to signal when HRN sends message to people
-  -But the unread notification shouldn't be used to signal that - the host needs know if a player is trying to contact them through HRN
-  -When the javascript detects a HRN to Host message, that shouldn't be marked as "unread"
-
 A "credits" page which lists what happened to each player
 
-TO ASK ALEX
--Should disconnected players be able to see conversations?
-  -I think: they shouldn't, but they should be able too once the game is over
-
-Styling
+Big Styling Overhaul
 -Maybe make the cut-off for the mobile styling a little smaller
 -The link text is different in from messages vs too messages, which bothers me. It should be consistent, lest the players read into it
 -There's a lot of empty space at the bottom of the conversation screen. should probably do something about that
--I think I want timestamps on messages
 -When game starts, a "Connected!" message that disappears after a little bit
 -"Return to Front Page" link when game's over on game, player maybe?
 -Order of conversations - I'd like HRN to be on top all the time. Or at the very least, for it to be consistent
@@ -57,3 +50,11 @@ DOING IT PROPERLY
   -Lots of documentation on how /not/ to do that. Basically fucking nothing on how /to/ do it
   https://guides.rubyonrails.org/testing.html#system-testing
   
+
+New Features
+-Host should maybe receive messages with a list of who has received them
+-I think I want timestamps on messages
+
+TO ASK ALEX
+-Should disconnected players be able to see conversations?
+  -I think: they shouldn't, but they should be able too once the game is over

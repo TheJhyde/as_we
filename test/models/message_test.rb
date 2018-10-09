@@ -37,6 +37,11 @@ class MessageTest < ActiveSupport::TestCase
     end
   end
 
+  # test "mark phone" do
+  #   msg = Message.create(conversation: @conversation, player: @player, contents: "TEST 555-555-5555 TEST")
+  #   assert_equal({phone: ["555-555-5555"]}.to_json(), msg.extra)
+  # end
+
   test "mark unread" do
     notif = notifications(:four)
     assert notif.seen
