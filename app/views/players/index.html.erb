@@ -1,0 +1,19 @@
+<div id="login">
+  <div>
+    Select a number to join the game.
+  </div>
+  <br>
+  <% @games.each do |game| %>
+    <div>
+      Game #<%= game.code %> <%= game.created_at.strftime("%m/%d/%y") %>
+      <ul>
+        <% game.players.each do |player| %>
+          <li>
+            <%= link_to player.number, players_login_path(id: player), method: :post%>
+            <% if player.host? %> (HOST)<% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

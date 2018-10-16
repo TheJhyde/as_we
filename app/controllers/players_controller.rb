@@ -42,6 +42,10 @@ class PlayersController < ApplicationController
     # @players = Player.where(left: false).where.not(number: "HRN")
   end
 
+  def index
+    @games = Game.all.order(created_at: :desc)
+  end
+
   def login
     player = Player.find_by(id: params[:id])
     if player

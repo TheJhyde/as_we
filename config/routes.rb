@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   mount ActionCable.server => "/cable"
 
+  get "secret/admin_page", to: "players#index"
   resources :games, only: [:create, :show, :update]
   resources :players, only: [:create, :show, :update, :edit]
   resources :conversations, only: [:create, :show]
