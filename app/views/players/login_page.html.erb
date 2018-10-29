@@ -10,7 +10,7 @@
       <div>
         Game #<%= game.code %>
         <ul>
-          <% game.players.each do |player| %>
+          <% game.players.where.not(role: :hrn).each do |player| %>
             <li><%= link_to player.number, players_login_path(id: player), method: :post%></li>
           <% end %>
         </ul>

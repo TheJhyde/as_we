@@ -2,11 +2,6 @@ Big Picture:
 -Back button problem
 -Mark phone numbers
 
--If multiple games are happening at once
-  -HRN will receive the updates from javascript for both
-  -Honestly I think that's the last straw - I've got to overhaul HRN
-  -But, later
-
 Big Styling Overhaul
 -Maybe make the cut-off for the mobile styling a little smaller
 -The link text is different in from messages vs too messages, which bothers me. It should be consistent, lest the players read into it

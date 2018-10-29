@@ -68,6 +68,5 @@ class PlayerTest < ActiveSupport::TestCase
     @player.reload
     assert_equal "TEST CHANGE", @player.change
     assert @player.fate.nil?
-
   end
 end

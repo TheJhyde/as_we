@@ -2,7 +2,7 @@
 
 class GameChannel < ApplicationCable::Channel
   def subscribed
-    if current_player.host
+    if current_player.host?
       stream_from "game_channel_#{params[:room]}"
     else
       stream_from "game_channel_#{current_player.id}"

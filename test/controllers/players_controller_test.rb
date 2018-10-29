@@ -10,7 +10,7 @@ class PlayersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_no_difference "Player.count" do
-      post players_path(player: {code: "INVALID CODE"})
+      post players_path(player: { code: "INVALID CODE" })
       assert_response :redirect
       assert_redirected_to root_path
     end

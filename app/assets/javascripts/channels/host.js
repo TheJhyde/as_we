@@ -11,7 +11,7 @@ function hostChannel(game_id){
         switch(data.type){
           case 'new_player':
             $("#player-list").append("<li id='player-list-" + data.id +"'>"+data.number+"</li>")
-            if(data.count == 5){
+            if(data.count == 6){
               $("#player-list").append("There are four players online and the game may begin.");
             }
             break;

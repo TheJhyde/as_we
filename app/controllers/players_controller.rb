@@ -39,7 +39,6 @@ class PlayersController < ApplicationController
 
   def login_page
     @games = Game.includes(:players).where.not(state: "end")
-    # @players = Player.where(left: false).where.not(number: "HRN")
   end
 
   def index

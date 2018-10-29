@@ -3,9 +3,7 @@
 class NewsUpdateJob < ApplicationJob
   queue_as :default
 
-  def perform(players, message)
-    hrn = Player.find_or_create_by(number: "HRN")
-
+  def perform(hrn, players, message)
     players.each do |player|
       unless player.nil?
         convo = hrn.find_conversation(player)

@@ -28,9 +28,7 @@ class Message < ApplicationRecord
         # Scanning for 5 digit long numbers, I believe
         numbers = self.contents.scan(/\d{5}/)
         links = numbers.uniq.map do |number|
-          # If this message is from HRN, we trust it to only give us players from the correct game
-          # HRN is an upstanding resistance network, wouldn't lead us astray
-          target = self.player.number == "HRN" ? Player.find_by(number: number) : Player.find_by(number: number, game: self.player.game)
+          target = Player.find_by(number: number, game: self.player.game)
           if target
             { number: number, id: target.id }
           else
