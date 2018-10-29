@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   def redirect_to_main
     return unless current_player && current_player.game && !current_player.left
 
-    if current_player.host
+    if current_player.host?
       redirect_to game_path(current_player.game)
     else
       redirect_to player_path(current_player)

@@ -1,12 +1,11 @@
-California Time:
-Saturday 2 pm - 4 pm 
-Sunday 2 pm - 4 pm
-
 Big Picture:
 -Back button problem
--Last three messages didn't go out (??)
-
 -Mark phone numbers
+
+-If multiple games are happening at once
+  -HRN will receive the updates from javascript for both
+  -Honestly I think that's the last straw - I've got to overhaul HRN
+  -But, later
 
 Big Styling Overhaul
 -Maybe make the cut-off for the mobile styling a little smaller
@@ -45,10 +44,6 @@ New Features
 -Host should maybe receive messages with a list of who has received them
 -I think I want timestamps on messages
 -A "credits" page which lists what happened to each player
--If multiple games are happening at once
-  -HRN will receive the updates from javascript for both
-  -Honestly I think that's the last straw - I've got to overhaul HRN
-  -But, later
 
 TO ASK ALEX
 -Should disconnected players be able to see conversations?

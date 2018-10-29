@@ -7,30 +7,34 @@
 
 hrn:
   number: HRN
-  host: false
+  role: hrn
   left: false
 
 one: 
   number: 12345
-  host: true
+  role: host
   left: false
   game: one
 two:
   number: 67890
-  host: false
   left: false
   game: one
 
 <% 4.times do |i| %>
 player_<%= i + 1 %>:
   number: 1234<%= i + 1 %>
-  host: false
   left: false
   game: full_game
 <% end %>
 
 player_host:
   number: 12340
-  host: true
+  role: host
+  left: false
+  game: full_game
+
+player_hrn:
+  number: hrn
+  role: hrn
   left: false
   game: full_game

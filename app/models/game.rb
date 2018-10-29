@@ -17,16 +17,12 @@ class Game < ApplicationRecord
   def start
     update(state: "running", start_time: DateTime.now)
 
-    if Player.exists?(number: "HRN", left: true)
-      Player.find_by(number: "HRN").update(left: false)
-    end
-
     self.players.each do |player|
       player.broadcast_to(type: "state", state: "running")
     end
 
-    p = self.players.where(host: false).order(:created_at).to_a
-    host = [self.players.find_by(host: true)]
+    p = self.players.where(role: :participant).order(:created_at).to_a
+    host = [self.players.find_by(role: :host)]
 
     if Rails.env.development? && false
       NewsUpdateJob.set(wait: 15.seconds).perform_later(p + host, "UPDATE: Yo what up")

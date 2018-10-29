@@ -3,7 +3,7 @@
 <div id="player-banner">
   <div>
     <div>
-      <%= link_to @from.host ? game_path(@game) : player_path(@from) do %>
+      <%= link_to @from.host? ? game_path(@game) : player_path(@from) do %>
         <%= image_tag "back.png", id: "nav", class: @from.any_unread? ? "notification" : "" %>
       <% end %>
     </div>

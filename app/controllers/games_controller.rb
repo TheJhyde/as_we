@@ -6,7 +6,8 @@ class GamesController < ApplicationController
 
   def create
     game = Game.create
-    host = Player.create(game: game, host: true)
+    host = Player.create(game: game, role: :host)
+    hrn = Player.create(game: game, role: :hrn)
     cookies[:current_player] = host.id
     cookies[:current_game] = game.id
     redirect_to game
@@ -16,8 +17,8 @@ class GamesController < ApplicationController
     @game = Game.includes(:players).find(params[:id])
     @players = @game.players
 
-    @host = @game.players.includes(:conversations).find_by(host: true)
-    @hrn = Player.includes(:conversations).find_or_create_by(number: "HRN")
+    @host = @game.players.includes(:conversations).find_by(role: :host)
+    @hrn = @game.players.includes(:conversations).find_by(role: :hrn)
   end
 
   def update

@@ -23,7 +23,7 @@ class GameTest < ActiveSupport::TestCase
   end
 
   test "has many players" do
-    assert_equal 5, @game.players.count
+    assert_equal 6, @game.players.count
   end
 
   test "start" do
@@ -39,7 +39,7 @@ class GameTest < ActiveSupport::TestCase
     @game.reload
 
     assert_equal "end", @game.state
-    assert_equal [true, true, true, true, true], @game.players.pluck(:left)
+    assert_equal [true], @game.players.pluck(:left).uniq
   end
 
   test "outcomes" do

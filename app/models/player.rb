@@ -3,6 +3,8 @@
 class Player < ApplicationRecord
   belongs_to :game, optional: true
 
+  enum role: [:participant, :host, :hrn]
+
   has_many :messages
   has_many :notifications
   has_many :conversations, through: :notifications
