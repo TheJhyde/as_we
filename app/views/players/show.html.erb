@@ -18,10 +18,7 @@
 
 <% if !@player.left %>
   <div id="game-state">
-    <% if @player.game.state == "end" %>
-      <h3>DISCONNECTED</h3>
-      The game is now over
-    <% elsif @player.game.state == "before" %>
+    <% if @player.game.state == "before" %>
       <h3>Connecting<span class="one">.</span><span class="two">.</span><span class="three">.</span></h3>
       The game will begin shortly.
     <% end %>
@@ -39,5 +36,8 @@
   <div id="main">
     <h3>FATE: <%= @player.fate %></h3>
     <h3>CHANGE: <%= @player.change %></h3>
+  </div>
+  <div class = "centered small">
+    <%= link_to "Return to Front Page", root_path %>
   </div>
 <% end %>

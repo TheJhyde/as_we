@@ -178,3 +178,14 @@ h4{
   75% { opacity: 1; }
   100% { opacity: 1; }
 }
+
+.fade{
+  opacity: 0;
+  -webkit-animation: fadeout 3s 1;
+  animation: fadeout 3s 1;
+}
+
+@keyframes fadeout{
+  0% {opacity: 1}
+  100% {opacity: 0}
+}

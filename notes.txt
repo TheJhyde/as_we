@@ -3,12 +3,7 @@ Big Picture:
 -Mark phone numbers
 
 Big Styling Overhaul
--Maybe make the cut-off for the mobile styling a little smaller
--The link text is different in from messages vs too messages, which bothers me. It should be consistent, lest the players read into it
 -There's a lot of empty space at the bottom of the conversation screen. should probably do something about that
--When game starts, a "Connected!" message that disappears after a little bit
--"Return to Front Page" link when game's over on game, player maybe?
--Order of conversations - I'd like HRN to be on top all the time. Or at the very least, for it to be consistent
 -Weird inconsistency with text size
   On the phone, if there are any messages longer than 10 characters, all of the messages will appear in a larger font
   Triggers the effect: '12345678901', '12345 7890' 'the the the the'

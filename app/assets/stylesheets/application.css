@@ -36,3 +36,7 @@ input[type="submit"]{
 .centered{
   text-align: center;
 }
+
+.small{
+  font-size: 12px;
+}

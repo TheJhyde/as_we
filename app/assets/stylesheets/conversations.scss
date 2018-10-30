@@ -1,8 +1,8 @@
-@media screen and (min-width: 1200px){
+@media screen and (min-width: 1100px){
   
 }
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1100px){
 
 }
 
@@ -28,14 +28,17 @@ html, body{
   margin: 4px;
   padding: 4px 7px;
   border-radius: 8px;
+  a{
+    color: #3b3bd1;
+  }
 }
 
 .from{
   margin-left: 40px;
   background-color: #ac0c0c;
-  a{
-    color: blue;
-  }
+  // a{
+  //   color: blue;
+  // }
 }
 
 .to{

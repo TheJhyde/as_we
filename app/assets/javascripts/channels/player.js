@@ -26,7 +26,8 @@ function playerPage(player_id){
             break;
           case "state":
             if(data.state == "running"){
-              $("#game-state").html("");
+              $("#game-state").html("<h3 class='fade'>Connected!</h3>");
+              setTimeout(() => $("#game-state").html(""), 3000)
             }else{
               $("#game-state").html("<h3>DISCONNECTED</h3>The game is now over.")
             }

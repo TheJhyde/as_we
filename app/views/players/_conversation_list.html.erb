@@ -1,5 +1,5 @@
 <div id="conversations-<%= player.id %>" class="conversations">
-  <% conversations.each do |conversation| %>
+  <% conversations.order(:created_at).each do |conversation| %>
     <%= link_to conversation_path(conversation, params: use_from ? {from: player} : {}) do %>
       <%= content_tag(:div, id: "conversation-#{conversation.id}", class: "conversation #{"unseen" unless conversation.read(player)}") do %>
         <%= (conversation.players.pluck(:number) - [player.number]).join(",") %>

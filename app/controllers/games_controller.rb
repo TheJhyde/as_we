@@ -23,9 +23,9 @@ class GamesController < ApplicationController
 
   def update
     game = Game.find(params[:id])
-    if game_params[:state] == "running" && game.state != "running"
+    if game_params[:state] == "running" && !game.running?
       game.start
-    elsif game_params[:state] == "end" && game.state != "end"
+    elsif game_params[:state] == "end" && !game.end?
       game.end
     end
 
