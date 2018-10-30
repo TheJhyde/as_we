@@ -4,13 +4,13 @@
   <div id="game-info">
     <strong>Game Code</strong>: <%= @game.code %><br>
     <strong>Game State</strong>: <%= @game.state %><br>
-    <% if @game.state == "running" %>
+    <% if @game.running? %>
       <strong>Time Elapsed:</strong> <span id="clock">00:00:00</span>
     <% end %>
-    <% if @game.state != "end" %>
+    <% if !@game.end? %>
       <%= form_for @game do |f| %>
-        <%= f.hidden_field :state, value: @game.state == "before" ? "running" : "end" %>
-        <%= f.submit @game.state == "before" ? "Start Game" : "End Game" %>
+        <%= f.hidden_field :state, value: @game.before? ? "running" : "end" %>
+        <%= f.submit @game.before? ? "Start Game" : "End Game" %>
       <% end %>
     <% end %>
   </div>
@@ -25,7 +25,7 @@
           <li><%= player.number %> (HOST)</li>
         <% else %>
           <li id="player-list-<%= player.id %>">
-            <% if @game.state == "running" %>
+            <% if @game.running? %>
               <%= link_to player.number, conversations_path(players: [player.id, @host.id]), method: :post %>
             <% else %>
               <%= player.number %>
@@ -34,7 +34,7 @@
           </li>
         <% end %>
       <% end %>
-      <% if @game.players.count == 6 && @game.state == "before" %>
+      <% if @game.players.count == 6 && @game.before? %>
         There are four players online and the game may begin.
       <% end %>
     </ol>
@@ -52,7 +52,7 @@
   playerPage(<%= @host.id %>);
   playerPage(<%= @hrn.id %>);
   hostChannel(<%= @game.id %>, null);
-  <% if @game.state == "running" %>
+  <% if @game.running? %>
     clock(<%= @game.start_time.utc.to_i * 1000 %>);
   <% end %>
 </script>

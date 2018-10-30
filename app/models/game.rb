@@ -1,21 +1,14 @@
-# frozen_string_literal: true
-
-# Valid Game States:
-# "before" - before the game
-# "running" - during the game
-# "end" - game is over
-
 class Game < ApplicationRecord
   has_many :players
-  validate :valid_state
+
+  enum state: [:before, :running, :end]
 
   before_create do
-    self.state = "before"
     self.code = SecureRandom.hex(3).upcase
   end
 
   def start
-    update(state: "running", start_time: DateTime.now)
+    update(state: :running, start_time: DateTime.now)
 
     self.players.each do |player|
       player.broadcast_to(type: "state", state: "running")
@@ -86,7 +79,7 @@ class Game < ApplicationRecord
 
 
   def end
-    update(state: "end")
+    update(state: :end)
 
     self.players.each do |player|
       player.leave unless player.left?
@@ -136,11 +129,4 @@ class Game < ApplicationRecord
       "humans are legally allowed to reproduce."
     ] - self.players.where(left: true).pluck(:change)
   end
-
-  private
-    def valid_state
-      if state && !["before", "running", "end"].include?(state)
-        errors.add(:state, :invalid)
-      end
-    end
 end

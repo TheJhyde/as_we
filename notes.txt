@@ -43,3 +43,4 @@ New Features
 TO ASK ALEX
 -Should disconnected players be able to see conversations?
   -I think: they shouldn't, but they should be able too once the game is over
+  -I should be able to see conversations, even if the players can't

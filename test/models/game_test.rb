@@ -14,14 +14,6 @@ class GameTest < ActiveSupport::TestCase
     assert_equal "before", game.state
   end
 
-  test "only allow valid codes" do
-    assert_not Game.new(state: "something else").valid?
-
-    assert Game.new(state: "before").valid?
-    assert Game.new(state: "running").valid?
-    assert Game.new(state: "end").valid?
-  end
-
   test "has many players" do
     assert_equal 6, @game.players.count
   end
