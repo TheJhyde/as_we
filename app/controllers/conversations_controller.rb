@@ -5,6 +5,7 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = Conversation.find(params[:id])
+    @messages = @conversation.messages.order(:order_num, :created_at)
     @game = current_game
 
     redirect_to(current_player) && return unless @conversation.players.exists?(id: cookies[:current_player]) || current_player.host?

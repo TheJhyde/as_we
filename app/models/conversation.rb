@@ -15,4 +15,9 @@ class Conversation < ApplicationRecord
     return Game.find(game_ids[0]) unless game_ids[0].nil?
     nil
   end
+
+  def last_order_num
+    last_msg = self.messages.order(:order_num).last
+    last_num = last_msg.nil? ? 0 : last_msg.order_num.nil? ? 0 : last_msg.order_num
+  end
 end

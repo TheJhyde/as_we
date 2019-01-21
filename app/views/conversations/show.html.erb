@@ -17,7 +17,7 @@
 </div>
 
 <div id="messages">
-  <% @conversation.messages.each do |msg| %>
+  <% @messages.each do |msg| %>
     <%= render partial: "messages/show", locals: {message: msg, current_player: @from, time: distance_of_time_in_words(@game.start_time, msg.created_at)} %>
   <% end %>
   <% if @conversation.game.state == "end" %>
@@ -37,5 +37,5 @@
 </div>
 
 <script>
-  conversationPage(<%= @from.id %>, <%= @conversation.id %>)
+  conversationPage(<%= @from.id %>, <%= @conversation.id %>, <%= @messages.last.nil? ? 0 : @messages.last.order_num %>)
 </script>

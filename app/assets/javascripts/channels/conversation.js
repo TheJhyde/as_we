@@ -1,28 +1,31 @@
 // This covers all the javascript that happens on the conversation page
 
-function conversationPage(player_id, conversation_id){
+function conversationPage(player_id, conversation_id, order_num){
   console.log("Running conversation", player_id)
   var chat = $('#messages');
+  var last_order_num = order_num;
 
   if(chat.length > 0){
     //Scroll to the bottom 
     chat.scrollTop(chat[0].scrollHeight);
-
-    // Grabs the form, sets up sending the message to the backend
-    var form = document.getElementById("new-message");
-    var form_body = document.getElementById("message-body");
-
-    form.addEventListener("submit", function(e){
-      var msg = form_body.value;
-      if(msg.length > 0){
-        App.chat.perform('send_message', {contents: msg, conversation_id, player_id})
-      }
-      form_body.value = "";
-
-      e.preventDefault();
-      return false;
-    });
   }
+
+  // Grabs the form, sets up sending the message to the backend
+  var form = document.getElementById("new-message");
+  var form_body = document.getElementById("message-body");
+
+  form.addEventListener("submit", function(e){
+    var msg = form_body.value;
+    if(msg.length > 0){
+      last_order_num++;
+      App.chat.perform('send_message', {contents: msg, conversation_id, player_id, order_num: last_order_num})
+    }
+    form_body.value = "";
+
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  });
 
   // Connect to the channels
   App.chat = App.cable.subscriptions.create(
@@ -36,6 +39,9 @@ function conversationPage(player_id, conversation_id){
         switch(data.type){
           case "msg":
             if(chat.length > 0 && data.conversation == conversation_id){
+              if(data.order_num > last_order_num){
+                last_order_num = data.order_num;
+              }
               add_chat_message(chat, data, player_id);
             }else{
               $("#nav").addClass("notification");
@@ -88,13 +94,19 @@ function add_chat_message(chat, data, player_id){
     App.chat.perform('mark_read', {conversation_id: data.conversation, player_id});
   }
 
-  // Appends the new chat message to the bottom of chats
+  // Adds the new chat message
   chat.append(
-    "<div class='" + classes + "'>" +
+    "<div class='" + classes + "' data-order='" + data.order_num + "'>" +
       "<div class='chat-player-number'>" + data.number + "</div>" +
       "<div class='message-contents'>"+message+"</div>" +
     "</div>"
   );
+  // I feel like sorting the whole thing every time is probably overkill
+  $('message').sort((a, b) => {
+    var aOrder = parseInt(a.getAttribute('data-order'));
+    var bOrder = parseInt(b.getAttribute('data-order'));
+    return (aOrder < bOrder) ? -1 : (bOrder < aOrder) ? 1 : 0;
+  });
 
   // Scrolls to the new bottom of the box
   chat.scrollTop(chat[0].scrollHeight);

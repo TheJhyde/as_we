@@ -25,7 +25,7 @@ class Message < ApplicationRecord
 
     def mark_number
       unless no_links
-        # Scanning for 5 digit long numbers, I believe
+        # Scanning for 5 digit long numbers
         numbers = self.contents.scan(/\d{5}/)
         links = numbers.uniq.map do |number|
           target = Player.find_by(number: number, game: self.player.game)
@@ -44,7 +44,7 @@ class Message < ApplicationRecord
     end
 
     # def mark_phone
-    #   numbers = self.contents.scan(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/)
+    #   numbers = self.contents.scan(/(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}/)
 
     #   match = "333-333-3333 blah".match(/^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/)
 
@@ -58,7 +58,7 @@ class Message < ApplicationRecord
     end
 
     def broadcast
-      broadcast = { message: self.contents, number: self.player.number, player: self.player.id, extra: self.extra, conversation: self.conversation.id, type: "msg" }
+      broadcast = { message: self.contents, number: self.player.number, player: self.player.id, extra: self.extra, conversation: self.conversation.id, order_num: self.order_num, type: "msg" }
 
       players = self.conversation.players
       players.each do |player|

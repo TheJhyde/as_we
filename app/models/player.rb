@@ -44,7 +44,8 @@ class Player < ApplicationRecord
         conversation: conversation,
         player: self,
         extra: { system_message: true }.to_json,
-        no_links: true
+        no_links: true,
+        order_num: conversation.last_order_num + 1
       )
     end
 

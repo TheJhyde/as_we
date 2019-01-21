@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_30_190420) do
+ActiveRecord::Schema.define(version: 2019_01_18_212658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2018_10_30_190420) do
     t.integer "conversation_id"
     t.string "extra", default: "{}"
     t.integer "player_id"
+    t.integer "order_num"
     t.index ["player_id"], name: "index_messages_on_player_id"
   end
 

@@ -1,11 +1,12 @@
 <% if message.extra_info["system_message"] %>
-  <div class ="message system">
+  <div class ="message system" data-order="<%=message.order_num%>">
     <%= message.contents %>
   </div>
 <% else %>
-  <div class="<%= message.player == current_player ? "from" : "to" %> message">
-    <div class="chat-player-number">
-      <%= message.player.number %>
+  <div class="<%= message.player == current_player ? "from" : "to" %> message" data-order="<%=message.order_num%>">
+    <div class="chat-info">
+      <span class="chat-player-number"><%= message.player.number %></span>
+      <span class="time-ago">(<%= time_ago_in_words(message.created_at) %> ago)</span>
     </div>
     <div class="message-contents">
       <%

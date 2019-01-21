@@ -1,15 +1,39 @@
+Scenarios the IDs should handle (the last order_num is 0 in all cases)
+
+The standard one:
+  A sends a message. It is assigned the id 1
+  A and B receives the message, with it's id
+  B sends a message, with the id 2
+Same Time
+  A sends a message
+  B sends a message, before A's message is received
+  Desired Outcome: Both messages get the same ID, it doesn't matter how they're sorted, the next message is 2
+Too Fast
+  A sends a message
+  A sends another message before the first message is received back
+  Desired Outcome: The first message gets 1, the second 2, they are shown in order
+Out of Order
+  A sends a message, then another message
+  B receives the second message first, then the first message
+  Desired Outcome: They are sorted on the screen in correct order
+  Possibly hide the second message until the first one comes through. Hide for how long? What is message 1 gets lost somehow? I don't think this is necessary. The gap between message 1 and 2 will probably be pretty small (I hope and assume) so just slipping it in behind should be sufficient.
+
+
+
 Big Picture:
 -Back button problem
 -Mark phone numbers
 
 Big Styling Overhaul
--There's a lot of empty space at the bottom of the conversation screen. should probably do something about that
 -Weird inconsistency with text size
   On the phone, if there are any messages longer than 10 characters, all of the messages will appear in a larger font
   Triggers the effect: '12345678901', '12345 7890' 'the the the the'
   Doesn't: 'it's very weird', 'the the the'
   See if I can replicate it locally, ideally in the browser
 -If the chat box is shorter than it's maximum size, when the keyboard comes up you can't see the bottom of the chat window
+-I still don't like the way the notification colors are working on the player page
+-Kind of want preview sentence for notifications on the player page
+-Timestamps with javascript? Does that make sense?
 
 DOING IT PROPERLY
 -Optimizing the database requests
@@ -32,7 +56,6 @@ DOING IT PROPERLY
 
 New Features
 -Host should maybe receive messages with a list of who has received them
--I think I want timestamps on messages
 -A "credits" page which lists what happened to each player
 
 TO ASK ALEX

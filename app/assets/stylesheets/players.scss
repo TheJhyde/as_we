@@ -59,23 +59,26 @@
 
 // -------------------- NOT SIZES ---------------
 .conversation{
-  color: black;
-  background: #F0F8FF;
-  display: block;
-  border: solid black;
+  // background: #F0F8FF;
+  border: solid white;
   border-width: 1px 0px 1px 0px;
+  color: white;
+  display: block;
+  margin: 0 8px;
+
   a {
-    color: black;
+    color: white !important;
+    font-size: 40px;
   }
 }
 
 .unseen{
-  background-color: #00BFFF;
+  background-color: #E6455C;
   font-weight: bold;
 }
 
 .notification{
-  background-color: lightblue;
+  background-color: #E6455C;
 }
 
 body{
@@ -124,11 +127,6 @@ h4{
   margin-top: 20px;
   font-size: 25px;
 }
-
-.unseen{
-  background-color: #00BFFF;
-}
-
 
 // Animation for the Connecting... game state
 .one {
