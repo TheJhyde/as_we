@@ -16,9 +16,6 @@ Out of Order
   A sends a message, then another message
   B receives the second message first, then the first message
   Desired Outcome: They are sorted on the screen in correct order
-  Possibly hide the second message until the first one comes through. Hide for how long? What is message 1 gets lost somehow? I don't think this is necessary. The gap between message 1 and 2 will probably be pretty small (I hope and assume) so just slipping it in behind should be sufficient.
-
-
 
 Big Picture:
 -Back button problem
@@ -32,7 +29,6 @@ Big Styling Overhaul
   See if I can replicate it locally, ideally in the browser
 -If the chat box is shorter than it's maximum size, when the keyboard comes up you can't see the bottom of the chat window
 -I still don't like the way the notification colors are working on the player page
--Kind of want preview sentence for notifications on the player page
 -Timestamps with javascript? Does that make sense?
 
 DOING IT PROPERLY

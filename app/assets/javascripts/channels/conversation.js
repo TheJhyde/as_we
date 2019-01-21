@@ -1,7 +1,7 @@
 // This covers all the javascript that happens on the conversation page
 
 function conversationPage(player_id, conversation_id, order_num){
-  console.log("Running conversation", player_id)
+  console.log("Got the order number", order_num)
   var chat = $('#messages');
   var last_order_num = order_num;
 

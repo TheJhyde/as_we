@@ -37,5 +37,5 @@
 </div>
 
 <script>
-  conversationPage(<%= @from.id %>, <%= @conversation.id %>, <%= @messages.last.nil? ? 0 : @messages.last.order_num %>)
+  conversationPage(<%= @from.id %>, <%= @conversation.id %>, <%= @conversation.last_order_num %>)
 </script>
