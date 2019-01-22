@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# DON'T USE THIS FILE!!
 # I don't think ChatChannel is actually being used for anything. GameChannel does most everything
 # Leaving it in for the moment thoguh
 

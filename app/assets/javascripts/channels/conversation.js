@@ -1,7 +1,6 @@
 // This covers all the javascript that happens on the conversation page
 
 function conversationPage(player_id, conversation_id, order_num){
-  console.log("Got the order number", order_num)
   var chat = $('#messages');
   var last_order_num = order_num;
 
@@ -95,18 +94,32 @@ function add_chat_message(chat, data, player_id){
   }
 
   // Adds the new chat message
-  chat.append(
+  var message_html = 
     "<div class='" + classes + "' data-order='" + data.order_num + "'>" +
       "<div class='chat-player-number'>" + data.number + "</div>" +
       "<div class='message-contents'>"+message+"</div>" +
-    "</div>"
-  );
+    "</div>";
+
+  var placed = false;
+  var messages = chat.children();
+  for(var i = messages.length - 1; i >= 0; i--){
+    var order_num = messages[i].getAttribute('data-order');
+    if(order_num <= data.order_num){
+      messages.eq(i).after(message_html);
+      i = -1;
+      placed = true;
+    }
+  }
+  if(!placed){
+    console.log("putting at the start")
+    chat.prepend(message_html);
+  }
   // I feel like sorting the whole thing every time is probably overkill
-  $('message').sort((a, b) => {
-    var aOrder = parseInt(a.getAttribute('data-order'));
-    var bOrder = parseInt(b.getAttribute('data-order'));
-    return (aOrder < bOrder) ? -1 : (bOrder < aOrder) ? 1 : 0;
-  });
+  // $('message').sort((a, b) => {
+  //   var aOrder = parseInt(a.getAttribute('data-order'));
+  //   var bOrder = parseInt(b.getAttribute('data-order'));
+  //   return (aOrder < bOrder) ? -1 : (bOrder < aOrder) ? 1 : 0;
+  // });
 
   // Scrolls to the new bottom of the box
   chat.scrollTop(chat[0].scrollHeight);
