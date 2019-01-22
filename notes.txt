@@ -1,10 +1,5 @@
 Scenarios the IDs should handle (the last order_num is 0 in all cases)
 
-Out of Order
-  A sends a message, then another message
-  B receives the second message first, then the first message
-  Desired Outcome: They are sorted on the screen in correct order. MAYBE hold onto 2nd message until 1st message arrives
-
 Big Picture:
 -Back button problem
 -Mark phone numbers
@@ -16,7 +11,6 @@ Big Styling Overhaul
   Doesn't: 'it's very weird', 'the the the'
   See if I can replicate it locally, ideally in the browser
 -If the chat box is shorter than it's maximum size, when the keyboard comes up you can't see the bottom of the chat window
--Timestamps with javascript? Does that make sense?
 
 DOING IT PROPERLY
 -Optimizing the database requests

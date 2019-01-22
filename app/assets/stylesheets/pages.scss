@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // This is the big screen version
-// As in, the minimum width these rules will apply at is 1200px
+// As in, the minimum width these rules will apply at is 1100px
 @media screen and (min-width: 1100px){
   h1{
     font-size: 6em;
@@ -11,11 +11,12 @@
   }
 }
 
-// The maximum width these rules will apply at is 1200px
+// The maximum width these rules will apply at is 1100px
 // So these are my mobile rules
 @media screen and (max-width: 1100px){
   body{
     font-size: 4vw;
+    width: 100vw;
   }
 
   h1{

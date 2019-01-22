@@ -96,7 +96,7 @@ class Game < ApplicationRecord
     # MAGIC NUMBER - how long you have to stay inside for the game to not just kills you
     Rails.cache.fetch(key, expires_in: 1.minute) do
       if start_time > 25.minutes.ago
-        { fate: ["You were spotted by an alien. They killed you. You are dead. You will no longer be able to play this game."], change: ["NA"] }
+        { fate: ["You were spotted by an alien. They killed you. You are dead. You will no longer be able to play this game."], change: ["No change."] }
       else
         players_left = players.where(left: true).count
         if players_left == 0

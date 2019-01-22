@@ -93,10 +93,11 @@ function add_chat_message(chat, data, player_id){
     App.chat.perform('mark_read', {conversation_id: data.conversation, player_id});
   }
 
+
   // Adds the new chat message
   var message_html = 
     "<div class='" + classes + "' data-order='" + data.order_num + "'>" +
-      "<div class='chat-player-number'>" + data.number + "</div>" +
+      (extra.system_message? "" : "<div class='chat-player-number'>" + data.number + "</div>") +
       "<div class='message-contents'>"+message+"</div>" +
     "</div>";
 

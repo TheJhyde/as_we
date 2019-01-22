@@ -8,7 +8,7 @@
     <br>
     <% @games.each do |game| %>
       <div>
-        Game #<%= game.code %>
+        Game #<%= game.code %> (<%= game.start_time.nil? ? game.created_at.strftime("%-m/%-d/%y") : game.start_time.strftime("%-m/%-d/%y") %>)
         <ul>
           <% game.players.where.not(role: :hrn).each do |player| %>
             <li><%= link_to player.number, players_login_path(id: player), method: :post%></li>
