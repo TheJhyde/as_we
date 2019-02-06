@@ -5,10 +5,11 @@ class Message < ApplicationRecord
   belongs_to :player
 
   validate :check_player
-  before_save :mark_number
+  after_validation :mark_number
+  before_save :broadcast
   # before_save :mark_phone
   after_create :mark_unread
-  after_create :broadcast
+  
 
   attr_accessor :no_links
 

@@ -38,7 +38,7 @@ class PlayersController < ApplicationController
   end
 
   def login_page
-    @games = Game.includes(:players).where.not(state: "end")
+    @games = Game.includes(:players).where.not(state: "end").order(created_at: :desc)
   end
 
   def index

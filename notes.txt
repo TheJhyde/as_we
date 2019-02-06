@@ -3,6 +3,9 @@ Scenarios the IDs should handle (the last order_num is 0 in all cases)
 Big Picture:
 -Back button problem
 -Mark phone numbers
+-Could I broadcast incoming messages before they're saved in the database? That might speed up the process a bit, help avoid order problems
+  Have to do it after I've validated it, so incorrect messages don't slip through
+  I made that update, test it before going live
 
 Big Styling Overhaul
 -Weird inconsistency with text size
