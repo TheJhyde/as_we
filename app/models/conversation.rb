@@ -18,6 +18,6 @@ class Conversation < ApplicationRecord
 
   def last_order_num
     last_msg = self.messages.order(:order_num).last
-    last_num = last_msg.nil? ? 0 : last_msg.order_num.nil? ? 0 : last_msg.order_num
+    last_msg.nil? ? 0 : last_msg.order_num.nil? ? 0 : last_msg.order_num
   end
 end

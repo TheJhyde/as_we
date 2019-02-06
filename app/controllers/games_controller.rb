@@ -7,7 +7,7 @@ class GamesController < ApplicationController
   def create
     game = Game.create
     host = Player.create(game: game, role: :host)
-    hrn = Player.create(game: game, role: :hrn, number: "HRN")
+    Player.create(game: game, role: :hrn, number: "HRN")
     cookies[:current_player] = host.id
     cookies[:current_game] = game.id
     redirect_to game

@@ -9,7 +9,6 @@ class Message < ApplicationRecord
   before_save :broadcast
   # before_save :mark_phone
   after_create :mark_unread
-  
 
   attr_accessor :no_links
 
